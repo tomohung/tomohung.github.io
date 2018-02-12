@@ -1,0 +1,121 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Tealeaf Course2 Lesson3 Quiz · TomoHung</title><meta name="description" content="Tealeaf Course2 Lesson3 Quiz - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Tealeaf Course2 Lesson3 Quiz</h1><div class="post-info">Feb 15, 2015</div><div class="post-content"><blockquote>
+<p>####1. What’s the difference between rendering and redirecting? What’s the impact with regards to instance variables, view templates?</p>
+</blockquote>
+<ul>
+<li>rendering: render a template HTML code, like <code>partial</code>.</li>
+<li>redirecting: make a new request to controller.</li>
+</ul>
+<a id="more"></a>
+<p>Regards to instance variables for showing view templates, instance variables only survive at the same request, so if we need some information like errors store in instance variables, we need to use <code>render</code> for this condition.</p>
+<blockquote>
+<p>####2. If I need to display a message on the view template, and I’m redirecting, what’s the easiest way to accomplish this?</p>
+</blockquote>
+<p>Use <code>flash</code> to store error message. This is the easiest way to store <code>one message</code>.</p>
+<blockquote>
+<p>####3. If I need to display a message on the view template, and I’m rendering, what’s the easiest way to accomplish this?</p>
+</blockquote>
+<p>Use <code>instance variable</code> to store errors, then <code>render</code>.</p>
+<p>* or use <code>flash.now</code> and render it.</p>
+<blockquote>
+<p>####4. Explain how we should save passwords to the database.</p>
+</blockquote>
+<p>Use <code>one way hash</code>. Since we can’t promise that data in database never be stolen, the way to protect our password is using a <code>one way hash</code> to store the digest. If someone get this digest, it’s hard for him to decyphor this digest to a plain text password.</p>
+<blockquote>
+<p>####5. What should we do if we have a method that is used in both controllers and views?</p>
+</blockquote>
+<p>Put the methods into controllers, and make them become helpers. Like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helper_method :current_user</span><br></pre></td></tr></table></figure>
+<p>Now, method <code>current_user</code> can be used in both controllers and views.</p>
+<blockquote>
+<p>####6. What is memoization? How is it a performance optimization?</p>
+</blockquote>
+<p>Some repeatedly query action for database will reduce our app performance, using <code>memoization</code> to overcome this.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@comment ||= User.find(session[:user_id]) if session[:user_id]</span><br></pre></td></tr></table></figure>
+<p>Syntax <code>||=</code> do a <code>OR</code> combined action, if <code>@comment</code> is <code>nil</code>, then <code>User.find</code> invokes; if <code>@comment</code> exist, just return @comment without invoke <code>User.find</code>. This prevent to invoke database query again.</p>
+<blockquote>
+<p>####7. If we want to prevent unauthenticated users from creating a new comment on a post, what should we do?</p>
+</blockquote>
+<p>Add a helper method <code>required_login</code> in <code>before_action</code> for actions <code>create</code> and ‘’. Since this method is used in both <code>post</code> and <code>comment</code>, we can put this method into <code>ApplicationController.rb</code>.</p>
+<blockquote>
+<p>####8. Suppose we have the following table for tracking “likes” in our application. How can we make this table polymorphic? Note that the “user_id” foreign key is tracking who created the like.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">id</th>
+<th></th>
+<th style="text-align:right">user_id</th>
+<th></th>
+<th style="text-align:right">photo_id</th>
+<th></th>
+<th style="text-align:right">video_id</th>
+<th></th>
+<th style="text-align:right">post_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td></td>
+<td style="text-align:right">4</td>
+<td></td>
+<td style="text-align:right"></td>
+<td></td>
+<td style="text-align:right">12</td>
+<td></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td></td>
+<td style="text-align:right">7</td>
+<td></td>
+<td style="text-align:right"></td>
+<td></td>
+<td style="text-align:right"></td>
+<td></td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td></td>
+<td style="text-align:right">2</td>
+<td></td>
+<td style="text-align:right">6</td>
+<td></td>
+<td style="text-align:right"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>According to this table, there should be 5 tables in database:</p>
+<ul>
+<li>User</li>
+<li>Photo</li>
+<li>Video</li>
+<li>Post</li>
+<li>Like</li>
+</ul>
+<p>And here are they might be in models:</p>
+<figure class="highlight ruby"><figcaption><span>User.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="title">ActiveRecord::Base</span></span></span><br><span class="line">  has_many <span class="symbol">:likes</span>, <span class="symbol">as:</span> likeable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Photo.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Photo</span> <span class="title">ActiveRecord::Base</span></span></span><br><span class="line">  has_many <span class="symbol">:likes</span>, <span class="symbol">as:</span> likeable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Video.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span> <span class="title">ActiveRecord::Base</span></span></span><br><span class="line">  has_many <span class="symbol">:likes</span>, <span class="symbol">as:</span> likeable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> <span class="title">ActiveRecord::Base</span></span></span><br><span class="line">  has_many <span class="symbol">:likes</span>, <span class="symbol">as:</span> likeable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>Like.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Like</span> <span class="title">ActiveRecord::Base</span></span></span><br><span class="line">  belongs_to <span class="symbol">:user_id</span></span><br><span class="line">  belongs_to <span class="symbol">:likeable</span>, <span class="symbol">polymorphic:</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>####9. How do we set up polymorphic associations at the model layer? Give example for the polymorphic model (eg, Vote) as well as an example parent model (the model on the 1 side, eg, Post).</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vote</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  belongs_to <span class="symbol">:voteable</span>, <span class="symbol">polymorphic:</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Post</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  has_many <span class="symbol">:votes</span>, <span class="symbol">as:</span> voteable</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>####10. What is an ERD diagram, and why do we need it?</p>
+</blockquote>
+<p>Entity Relationship Dirgram(ERD) stands for tables in database relationship between each others. It’s a convinient way to communicate with others what the tables relationship, even for ourselves under developming.</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/02/16/reflection-to-tealeaf-course2-lesson3/" class="prev">PREV</a><a href="/2015/02/10/reflection-to-tealeaf-course2-lesson2/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/02/15/tealeaf-course2-lesson3-quiz/';
+var disqus_title = 'Tealeaf Course2 Lesson3 Quiz';
+var disqus_url = 'https://tomohung.com/2015/02/15/tealeaf-course2-lesson3-quiz/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

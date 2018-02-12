@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course2 Lesson4 · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course2 Lesson4 - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course2 Lesson4</h1><div class="post-info">Feb 22, 2015</div><div class="post-content"><p>In Course2(Rapid Prototyping with Ruby on Rails), <a href="http://www.tomohung.com/blog/2015/02/02/reflection-to-tealeaf-course-2-lesson-1/" target="_blank" rel="noopener">first week</a> I learned about <code>Models and database</code>, <a href="http://www.tomohung.com/blog/2015/02/10/reflection-to-tealeaf-course2-lesson2/" target="_blank" rel="noopener">second week</a> I learned about <code>Controllers and Views</code>. The <a href="http://www.tomohung.com/blog/2015/02/16/reflection-to-tealeaf-course2-lesson3/" target="_blank" rel="noopener">third week</a> I learned to add <code>Authentication</code> and <code>Polymorphic table</code>.</p>
+<p>And this week, also the last week, I completed all basic functions I need to know. Including Ajax for voting, extract methods into gem, build and publish gem, display time info considering user’s timezone.</p>
+<a id="more"></a>
+<p>###Ajax for voting</p>
+<p>Ajax is a clean way to change View template that is necessary changed, and we don’t need to redirect and render full page. Rails offer a way to achieve this.</p>
+<ul>
+<li>in Controller</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">respond_to <span class="keyword">do</span> <span class="params">|format|</span></span><br><span class="line">  format.html <span class="keyword">do</span></span><br><span class="line">    redirect_to <span class="symbol">:back</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  format.js</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>in View</li>
+</ul>
+<p><code>format.js</code> will lead to the class#action View file, for example: <code>/votes/create.js.erb</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#voteable_&lt;%= @vote.voteable_type %&gt;_&lt;%= @vote.voteable_id %&gt;"</span>).</span><br><span class="line">  html(<span class="string">"&lt;%= j render 'shared/show_dislike_link', vote: @vote %&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<p>notice that in <code>js.erb</code> file, render should specify format by using <code>j render</code>.</p>
+<ul>
+<li>HTML ID</li>
+</ul>
+<p>ID is the key to do Ajax.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id = <span class="string">'vote_&lt;%=vote.id%&gt;'</span>&gt;</span><br><span class="line">  &lt;%= link_to vote_path(vote), <span class="symbol">remote:</span> <span class="literal">true</span>, <span class="symbol">method:</span> <span class="symbol">:delete</span> <span class="keyword">do</span> %&gt;</span><br><span class="line">    &lt;i class='icon-thumbs-up'&gt;&lt;/i&gt;</span><br><span class="line">    Cancel</span><br><span class="line">  &lt;% <span class="keyword">end</span> %&gt;</span><br><span class="line">&lt;<span class="regexp">/span&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Add <code>id</code> for Ajax, and add <code>remote: true</code> for activate Ajax.</p>
+<p>###Extract methods</p>
+<p>Using <code>ActiveSupport::Concern</code> to manage module, info from Rails API:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">M</span></span></span><br><span class="line">  extend ActiveSupport::Concern</span><br><span class="line"></span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    scope <span class="symbol">:disabled</span>, -&gt; &#123; where(<span class="symbol">disabled:</span> <span class="literal">true</span>) &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  class_methods <span class="keyword">do</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>When I using for vote methods:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Voteable</span></span></span><br><span class="line">  extend ActiveSupport::Concern</span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    has_many <span class="symbol">:votes</span>, <span class="symbol">as:</span> <span class="symbol">:voteable</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">like_votes</span></span></span><br><span class="line">    <span class="keyword">self</span>.votes</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Or Sluggable.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Sluggable</span></span></span><br><span class="line">  extend ActiveSupport::Concern</span><br><span class="line"></span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    before_save <span class="symbol">:generate_slug</span></span><br><span class="line">    class_attribute <span class="symbol">:slug_column</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_param</span></span></span><br><span class="line">    <span class="keyword">self</span>.slug</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">generate_slug</span></span></span><br><span class="line">    <span class="comment"># ignore...</span></span><br><span class="line">    <span class="comment"># self.send(self.class.slug_column)</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">ClassMethods</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">sluggable_column</span><span class="params">(noun)</span></span></span><br><span class="line">      <span class="keyword">self</span>.slug_column = noun</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Notice that using <code>class_attribute</code> to connect different class symbol. Setting <code>sluggable_column</code> in <code>Models</code>.</p>
+<p>Also notice that <code>slug_column</code> is a class methods and return a symbol, in order to get instance’s value, use <code>self.send(self.class.slug_column)</code>.</p>
+<p>###Slug</p>
+<p>There are two purpose using slug:</p>
+<ul>
+<li>Don’t expose database information.</li>
+<li>URL for SEO friendly</li>
+</ul>
+<p>The concepts to generate slug are:</p>
+<ol>
+<li>add a slug column to store slug value</li>
+<li>substitute key word like <code>name</code> into slug, avoid some keywords for HTTP like <code>@&amp;``&#39;</code> etc.</li>
+<li>check slug exsited or not, otherwise add a number for avoiding the same name.</li>
+</ol>
+<p>###Using Gems</p>
+<p>Gem is a very convenient way to use the same methods between two different projects.</p>
+<ol>
+<li>build a gem spec file.</li>
+<li>copy exsited module codes into gem specify path.</li>
+<li>build the gem</li>
+<li>publish the gem</li>
+<li>add gem to Gemfile, then <code>bundle install</code>.</li>
+</ol>
+<p>###Time Zone</p>
+<p>Rails offer time zone methods to do this.</p>
+<ul>
+<li>in model backed form</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f.time_zone_select <span class="symbol">:time_zone</span>, ActiveSupport::TimeZone.us_zones, <span class="symbol">default:</span> Time.zone.name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>in View template</li>
+</ul>
+<p>changing time zone by (if time zone is ‘Arizona’)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">datetime = post.created_at.in_time_zone(<span class="string">"Arizona"</span>)</span><br></pre></td></tr></table></figure>
+<p>###Conclusion</p>
+<p>Using gem is a way for Rails how to DRY our codes. Rails flavored Ajax is also antoher way to do that. Exciting to know these. </p>
+<p>Finally, the last week is coming to the end. The final project <code>Postit</code> seems become into reality app we daily use. And rails pieces are making together and show me how to build a basic function app.</p>
+<p>After these two course, I think now I have confidence to read through other Rails introducion books I used to not understand.About Course 3, there is no reason I do NOT keep going since I decide to make a career change. Glad that I survived through the first two courses, and I think I’m ready for the course 3 challenge.</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/03/03/titans-tic-tac-toe/" class="prev">PREV</a><a href="/2015/02/16/reflection-to-tealeaf-course2-lesson3/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/02/22/reflection-to-tealeaf-course2-lesson4/';
+var disqus_title = 'Reflection to Tealeaf Course2 Lesson4';
+var disqus_url = 'https://tomohung.com/2015/02/22/reflection-to-tealeaf-course2-lesson4/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

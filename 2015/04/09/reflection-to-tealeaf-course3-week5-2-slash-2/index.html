@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course3 Week5 (2/2) · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course3 Week5 (2/2) - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course3 Week5 (2/2)</h1><div class="post-info">Apr 9, 2015</div><div class="post-content"><p>###Continuous Integration(CI) and Continous Delivery(CD)</p>
+<p>This part is super exciting so I decide to make it a individual post.</p>
+<p>Continuous Integration(CI) and Continous Delivery(CD) are two of most important part in automation development. There are plenty of innovation tools, but I think the work flow is the key to understand.</p>
+<ol>
+<li>Pull the latest code from GitHub.</li>
+<li>Create a new feature branch and develop.</li>
+<li>Finish development and put to a feature named branch on GitHub.</li>
+<li>Create a PR from this branch to <code>staging</code> branch.</li>
+<li>Wait CI test for staging branch.</li>
+<li>CI automatically deploy from staging branch to <code>staging server</code>.</li>
+<li>Manual test on staging server.</li>
+<li>Create PR from staging to <code>master</code> branch.</li>
+<li>trigger CI for master branch and automatically deploy to <code>production server</code>.</li>
+</ol>
+<p>###Setting CI and CD</p>
+<p>Here we use <a href="https://circleci.com" target="_blank" rel="noopener">Circle CI</a> for CI and CD. There is also well known service called <a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>.</p>
+<ul>
+<li>Create a <code>staging</code> branch.</li>
+<li>Follow Circle CI project setting.</li>
+<li>You may need Heroku API key and SSH.</li>
+<li>[Key] Create a <code>circle.yml</code> in the root of project, adjust <code>production_app_name</code> and <code>staging_app_name</code>.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">machine:</span><br><span class="line">  ruby:</span><br><span class="line">    version: 2.1.5</span><br><span class="line">deployment:</span><br><span class="line">  production:</span><br><span class="line">    branch: master</span><br><span class="line">    commands:</span><br><span class="line">      - heroku maintenance:on --app production_app_name</span><br><span class="line">      - heroku pg:backups capture --app production_app_name</span><br><span class="line">      - git push git@heroku.com:production_app_name.git $CIRCLE_SHA1:refs/heads/master</span><br><span class="line">      - heroku run rake db:migrate --app production_app_name</span><br><span class="line">      - heroku maintenance:off --app production_app_name</span><br><span class="line">  staging:</span><br><span class="line">    branch: staging</span><br><span class="line">    commands:</span><br><span class="line">      - heroku maintenance:on --app staging_app_name</span><br><span class="line">      - git push git@heroku.com:staging_app_name.git $CIRCLE_SHA1:refs/heads/master</span><br><span class="line">      - heroku run rake db:migrate --app staging_app_name</span><br><span class="line">      - heroku maintenance:off --app staging_app_name</span><br></pre></td></tr></table></figure>
+<p>I got an error when running Circle test: [counldn’t find file ‘bootstrap’]</p>
+<p>Solution: Rename file <code>stylesheets/application.css</code> to <code>stylesheets/application.css.scss</code>. And add Line to the file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@import &apos;bootstrap-sprockents&apos;</span><br><span class="line">@import &apos;bootstrap&apos;</span><br></pre></td></tr></table></figure>
+<p>and remove line <code>*= require bootstrap</code>.</p>
+<p>###Embeded Badget</p>
+<p>I aslo try to use badget in my homepage.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%img(src=&quot;https://circleci.com/gh/tomohung/myflix.png?circle-token=a7c782deb0d0022335fa1f095e268bb44eb4cab8&quot;)</span><br></pre></td></tr></table></figure>
+<p>Then I can see this passing test badget.</p>
+<img src="https://circleci.com/gh/tomohung/myflix.png?circle-token=a7c782deb0d0022335fa1f095e268bb44eb4cab8">
+<h3 id="Slack-ingegration-with-Github-and-Circle-CI"><a href="#Slack-ingegration-with-Github-and-Circle-CI" class="headerlink" title="Slack ingegration with Github and Circle CI"></a>Slack ingegration with Github and Circle CI</h3><p>I failed to use <a href="http://ccmenu.org/" target="_blank" rel="noopener">CCMenu</a> to have a notification. But I use <a href="https://slack.com/" target="_blank" rel="noopener">Slack</a> to integrate GitHub and Circle CI, and that’s why I said it’s exciting!!</p>
+<p>After setting done, the only thing I need to do is <code>git push origin staging</code> or <code>git push origin master</code>. I’ll get notifications in Slack when Github got a push event, and Circle CI run the test and deployment in the same time. Surely I will also get a Circle CI result notification if test and deployment finished.</p>
+<p>This is what a programmer should do!! Don’t Repeat Yourself!! Bravo!!</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/05/06/reflection-to-tealeaf-course3-week6/" class="prev">PREV</a><a href="/2015/04/09/reflection-to-tealeaf-course3-week5/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/04/09/reflection-to-tealeaf-course3-week5-2-slash-2/';
+var disqus_title = 'Reflection to Tealeaf Course3 Week5 (2/2)';
+var disqus_url = 'https://tomohung.com/2015/04/09/reflection-to-tealeaf-course3-week5-2-slash-2/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

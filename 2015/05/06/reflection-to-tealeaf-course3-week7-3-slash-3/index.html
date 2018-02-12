@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course3 Week7 (3/3) · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course3 Week7 (3/3) - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course3 Week7 (3/3)</h1><div class="post-info">May 6, 2015</div><div class="post-content"><p>#Messsage Expectation</p>
+<p>We has metioned <a href="http://www.tomohung.com/blog/2015/05/06/reflection-to-tealeaf-course3-week7-1/" target="_blank" rel="noopener">Test Double at post (1/3)</a>, and here is another kind of Test Double, called <code>Mock Objects</code>.</p>
+<blockquote>
+<p>Assert communication, not response</p>
+</blockquote>
+<p>In previous post, we have moved the code into <code>UserSignup</code> services obejct and test it. And here all we need to test is ensure that <code>:sign_up</code> method is called in <code>UsersController#create</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">describe UsersController do</span><br><span class="line">  describe &apos;POST create&apos; do</span><br><span class="line">    context &apos;with valid input&apos; do</span><br><span class="line"></span><br><span class="line">      it &apos;should logged_in if create user&apos; do</span><br><span class="line">        result = double(:sign_up, successful?: true)</span><br><span class="line">        expect_any_instance_of(UserSignup).to receive(:sign_up).and_return(result)</span><br><span class="line">        expect_any_instance_of(User).to receive(:id).and_return(1)</span><br><span class="line">        post :create, user: Fabricate.attributes_for(:user)</span><br><span class="line">        expect(session[:user_id]).to eq(1)</span><br><span class="line">      end</span><br><span class="line">    end</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><code>expect_any_instance_of(UserSignup).to receive(:sign_up).and_return(result)</code> is called <code>Message Expectation</code> in RSpec, a kind of <code>Mock Object</code>.</p>
+<p>Refer to RSpec, it defines</p>
+<blockquote>
+<p>###Mock Objects and Test Stubs</p>
+<p>The names Mock Object and Test Stub suggest specialized Test Doubles. i.e. a Test Stub is a Test Double that only supports method stubs, and a Mock Object is a Test Double that supports message expectations and method stubs.</p>
+<p>There is a lot of overlapping nomenclature here, and there are many variations of these patterns (fakes, spies, etc). Keep in mind that most of the time we’re talking about method-level concepts that are variations of method stubs and message expectations, and we’re applying to them to one generic kind of object: a Test Double.</p>
+</blockquote>
+<p>#Test Minimalist</p>
+<p>Here we got 3 resources of discussion test.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=R9FOchgTtLM" target="_blank" rel="noopener">Why you don’t get mock objects</a> by Gregory</li>
+<li><a href="http://martinfowler.com/articles/mocksArentStubs.html" target="_blank" rel="noopener">Mock Aren’t Stub</a> by Mark Folwer</li>
+<li><a href="https://www.youtube.com/watch?v=URSWYvyc42M" target="_blank" rel="noopener">The Magic tricks of Testing</a> by Sandi Mets</li>
+</ul>
+<p>Summary for these three resources.</p>
+<p>I use Sandi’s picture for the start: </p>
+<img src="http://jnoconor.github.io/images/unit-testing-chart-sandi-metz.png">
+<p>Use this week assignment, class <code>UserSignup</code> for example:</p>
+<ul>
+<li><p>Incoming Query: We test UserSignup method <code>sign_up</code>, and expect it returns an successful object with valid info. This spec is testing this object state.</p>
+</li>
+<li><p>Incoming Command: We also test UserSignup method <code>sign_up</code>, and expect it should create an user with valid info. This is what Sandi said: side effects for outside.</p>
+</li>
+</ul>
+<blockquote>
+<p>Incoming Command and Incoming Query are all what Mark Folwer said State or Stub or Classical.</p>
+</blockquote>
+<ul>
+<li><p>Sent to Self: According to Sandi’s opinion, it’s not necessary to test all private methods in class. Maybe for the complex method, we should think if we can abstract some logic into a new class, and give that class another tests if we need it.</p>
+</li>
+<li><p>Outgoing Query: Sandi ignore this, I guess she means that once the object send a new query to the other object, all we need to do is make sure that the other object works fine. And this should be test on that object, so we don’t need to test outgoing query.</p>
+</li>
+<li><p>Outgoing Command: Once we let an object send a message to the other object do some side effects, all we need to do is make sure that this object do send a message. And this is method message expectation in RSpec, also Mark Folwer said behavior or Mockist or ‘Mock’.</p>
+</li>
+</ul>
+<p>Gregory and Sandi all said that Mock Object can loose each objects association when testing. Once we are testing behavior( or maybe I can say testing interface), we don’t need to bind the test and method with specific variable, but bind with an interface. It looks like apply OO concept on testing - try to loose connection with each objects, also loose each object’s tests.</p>
+<p>Kevin also metions this:</p>
+<blockquote>
+<p>a pure “mockist” way of doing test can be difficult in Rails apps, because in rails apps persistence is handled by the framework and for small apps most of object collaboration / message sending are about persistence. If you mock those interfaces, you end up mocking the guts of rails and that typically doesn’t end up well.  this is also why we only touch this topic in the context of non rails objects like service objects.</p>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/05/07/reflection-to-tealeaf-course3-week8-1/" class="prev">PREV</a><a href="/2015/05/06/reflection-to-tealeaf-course3-week7-2/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/05/06/reflection-to-tealeaf-course3-week7-3-slash-3/';
+var disqus_title = 'Reflection to Tealeaf Course3 Week7 (3/3)';
+var disqus_url = 'https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-3-slash-3/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

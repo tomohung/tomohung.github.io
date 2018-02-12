@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Practical Vim - Registers  · TomoHung</title><meta name="description" content="Practical Vim - Registers  - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Practical Vim - Registers </h1><div class="post-info">Feb 12, 2018</div><div class="post-content"><h2 id="複制貼上"><a href="#複制貼上" class="headerlink" title="複制貼上"></a>複制貼上</h2><ul>
+<li>將somethingInTheWay換成collection<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">collection = getCollection();</span><br><span class="line">process(somethingInTheWay, target);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>yiw</code> <code>jww</code> <code>diw</code> <code>P</code> 失敗！</p>
+<p><code>yiw</code> <code>jww</code> <code>diw</code> <code>&quot;0P</code> OK!!</p>
+<p><code>&quot;0</code>是複制專用的暫存器，只有<code>y</code>操作會改變其值</p>
+<ul>
+<li><p>如果是在插入模式時，也可以用<code>&lt;C-r&gt;0</code>來貼上</p>
+</li>
+<li><p>如果是HTML</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;Keystrokes&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;Buffer Contents&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>游標停在tr<br><code>yap</code> <code>gP</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;Keystrokes&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;Buffer Contents&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">  &lt;tr&gt;</span><br><span class="line">    &lt;td&gt;Keystrokes&lt;/td&gt;</span><br><span class="line">    &lt;td&gt;Buffer Contents&lt;/td&gt;</span><br><span class="line">  &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<p><code>gp</code> <code>gP</code>和<code>p</code> <code>P</code>類似，差別在插入後游標的位置在新的複制內容上</p>
+<h2 id="系統剪貼板"><a href="#系統剪貼板" class="headerlink" title="系統剪貼板"></a>系統剪貼板</h2><ul>
+<li><code>&quot;+p</code>將外部程式中複制的內容貼到游標後（而且此方法在貼入多行程式碼時，不會受到autoindent的影響）</li>
+<li><code>&quot;+yy</code>將游標所在行的內容複制到系統剪貼板</li>
+</ul>
+<h2 id="Macro冷知識"><a href="#Macro冷知識" class="headerlink" title="Macro冷知識"></a>Macro冷知識</h2><ul>
+<li><code>&quot;&quot;</code> The Unnamed Register</li>
+<li><code>&quot;0</code> The Yank Register</li>
+<li><code>&quot;_</code> The Black Hole Register</li>
+<li><code>&quot;+</code> The System Clipboard</li>
+<li><code>&quot;*</code> Selection Registers</li>
+<li><code>&quot;=</code> The Expression Register</li>
+<li><code>&quot;%</code> Name of the current file</li>
+<li><code>&quot;#</code> Name of the alternate file</li>
+<li><code>&quot;.</code> Last inserted text</li>
+<li><code>&quot;:</code> Last Ex command</li>
+<li><code>&quot;/</code> Last search pattern</li>
+</ul>
+<h2 id="Swap-Two-Words"><a href="#Swap-Two-Words" class="headerlink" title="Swap Two Words"></a>Swap Two Words</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I like tomato and banana.</span><br></pre></td></tr></table></figure>
+<p><code>ft</code> <code>de</code><br><code>mm</code> **</p>
+<p><code>ww</code> <code>ve</code> <code>p</code><br><code>&#39;m</code> **<br><code>P</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I like banana and tomato.</span><br></pre></td></tr></table></figure>
+<h2 id="Macro"><a href="#Macro" class="headerlink" title="Macro"></a>Macro</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo = 1</span><br><span class="line">bar = &apos;a&apos;</span><br><span class="line">foobar = foo + bar</span><br></pre></td></tr></table></figure>
+<p><code>qa</code> <code>A;&lt;ESC&gt;</code> <code>Ivar &lt;ESC&gt;</code> <code>q</code><br>完成對第一次加上var和行尾加上;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var foo = 1;</span><br><span class="line">bar = &apos;a&apos;</span><br><span class="line">foobar = foo + bar</span><br></pre></td></tr></table></figure>
+<p>然後 <code>j</code> <code>@a</code> <code>j@@</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var foo = 1;</span><br><span class="line">var bar = &apos;a&apos;;</span><br><span class="line">var foobar = foo + bar;</span><br></pre></td></tr></table></figure></p>
+<p><code>@@</code>表示執行前一次的Macro</p>
+<blockquote>
+<p>錄制Macro時確保每一條指令都可以被重覆執行</p>
+</blockquote>
+<p><code>:reg a</code><br>看register a的內容</p>
+<h2 id="連續本文行上修改"><a href="#連續本文行上修改" class="headerlink" title="連續本文行上修改"></a>連續本文行上修改</h2><p>Origin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. one</span><br><span class="line">2. two</span><br><span class="line">3. three</span><br><span class="line">4. four</span><br></pre></td></tr></table></figure></p>
+<p>Goal<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) One</span><br><span class="line">2) Two</span><br><span class="line">3) Three</span><br><span class="line">4) Four</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>串行的方式<br><code>qa</code> <code>f.r)</code> <code>w~j</code><br><code>3@a</code></p>
+</li>
+<li><p>並行的方式<br>遇到其中一行不滿足規則會失敗，改用並行方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. one</span><br><span class="line">2. two</span><br><span class="line">// breaking line</span><br><span class="line">3. three</span><br><span class="line">4. four</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>qa</code> <code>f.r)</code> <code>w~</code><br>選擇<code>V</code>後<br><code>:normal @a&lt;CR&gt;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1) One</span><br><span class="line">2) Two</span><br><span class="line">// breaking line</span><br><span class="line">3) Three</span><br><span class="line">4) Four</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查內容<code>:reg {char}</code></li>
+<li>追加內容<code>q{capital char}</code> 執行完<code>q</code>結束</li>
+</ul>
+<h2 id="批次修改檔案"><a href="#批次修改檔案" class="headerlink" title="批次修改檔案"></a>批次修改檔案</h2><p>例：給每個class加上外部的module<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># description</span><br><span class="line">class Animal</span><br><span class="line">  # todo</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p><code>:args {file patten}</code> 讀入符合樣板的檔案<br><code>:args</code>顯示參數列表內容</p>
+<h4 id="並行"><a href="#並行" class="headerlink" title="並行"></a>並行</h4><p><code>:first</code>確保是第一個檔案</p>
+<p><code>qa</code><br><code>gg/class&lt;CR&gt;</code><br><code>O</code> <code>module Rank&lt;ESC&gt;</code><br><code>j&gt;G</code><br><code>Go</code> <code>end&lt;ESC&gt;</code><br><code>q</code></p>
+<p>還不要儲存，因為等會要對所有文件做同樣的動作<br><code>:e!</code>撒消修改<br><code>:argdo narmal @a</code><br><code>:wa</code></p>
+<h4 id="串行"><a href="#串行" class="headerlink" title="串行"></a>串行</h4><p>增加指令<br><code>qA</code><br><code>:next</code><br><code>q</code><br><code>100@a</code></p>
+<p>100只是要比所有檔案數還多就可以，反正只要失敗就停止</p>
+<h2 id="疊代求值給列表編號"><a href="#疊代求值給列表編號" class="headerlink" title="疊代求值給列表編號"></a>疊代求值給列表編號</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">one</span><br><span class="line">two</span><br><span class="line">three</span><br><span class="line">four</span><br></pre></td></tr></table></figure>
+<p>利用<code>:let</code><br><code>:let i=1</code><br><code>qa</code><br><code>I&lt;C-r&gt;=i&lt;CR&gt;&lt;ESC</code><br><code>:let i+=1</code><br><code>q</code><br><code>jVG</code><br><code>:normal @a</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) one</span><br><span class="line">2) two</span><br><span class="line">3) three</span><br><span class="line">4) four</span><br></pre></td></tr></table></figure>
+<p><code>:echo i</code>可印出變數值</p>
+<p>利用複制貼上再用<code>&lt;C-a&gt;</code>也是一種解法</p>
+<h2 id="修改Macro"><a href="#修改Macro" class="headerlink" title="修改Macro"></a>修改Macro</h2><p>利用<code>:put {char}</code>印出內容，修改後<br><code>0&quot;{char}y$</code> <code>dd</code> 寫回暫存器</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/01/25/Practical-Vim-Getting-Around-Faster/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2018/02/12/practical-vim-registers/';
+var disqus_title = 'Practical Vim - Registers ';
+var disqus_url = 'https://tomohung.com/2018/02/12/practical-vim-registers/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

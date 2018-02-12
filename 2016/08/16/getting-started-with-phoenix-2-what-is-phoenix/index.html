@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Getting started with Phoenix - 2. What is Phoenix · TomoHung</title><meta name="description" content="Getting started with Phoenix - 2. What is Phoenix - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Getting started with Phoenix - 2. What is Phoenix</h1><div class="post-info">Aug 16, 2016</div><div class="post-content"><h2 id="What-is-Phoenix"><a href="#What-is-Phoenix" class="headerlink" title="What is Phoenix?"></a>What is Phoenix?</h2><p>Phoenix是一套基於Elixir語言的網頁應用開發框架，主體為MVC架構，很多的概念其實都有從Rails借來的影子，所以如果你本身有Rails的基礎，要入門Phoenix其實不需要太多的時間。</p>
+<p>Phoenix要強調的是，Rails所提供的高效開發，在Phoenix上你也能同樣體驗到，並且它能提供更好的表現。其它像是Channel（其實就是Rails 5所主打的ActionCable）</p>
+<p>這篇剛好最近Phoenix的作者Chris McCord所發表<a href="https://dockyard.com/blog/2016/08/09/phoenix-channels-vs-rails-action-cable" target="_blank" rel="noopener">Phoenix Channel和Rails ActionCable的比較(link)</a></p>
+<p>另外這個同樣是McCord<a href="https://gist.github.com/omnibs/e5e72b31e6bd25caf39a" target="_blank" rel="noopener">比較好幾個Framework Throughput的表現(link)</a></p>
+<p>而在Rails的開發哲學中，最重要的兩項</p>
+<ul>
+<li><p>Don’t Repeat Yourself<br>這點在以functional programming為基礎上的Elixir，我認為可以更容易的將方法抽象出來成為module，另外Elixir所提供的Concurrency，大幅降低要寫多執行程式的困難度</p>
+</li>
+<li><p>Convention Over Configuration<br>攝取大量Rails養份的Phoenix同樣遵循MVC架構，Restful Route設計，一些方便的generator，但又不像Rails那麼的Magic。譬如在Rails中的Controller Action，預設直接render對應到該action名稱的html檔案，但是在Phoenix中你必需明確的寫出要執行render的動作。</p>
+</li>
+</ul>
+<p>另外在Rails中常常單數複數在不同的情況下，Rails會幫你自動轉換，譬如說你有一張Table是people，就能假設有一個model是person。但有時候單複數轉換其實會讓人覺得困擾，所以在Phoenix中你只需要多打幾個字，明確的指定名稱，就能避免這些問題。</p>
+<p>在我個人少許Phoenix開發的經驗中，甚至某些情況下我會覺得Phoenix開發速度甚至是比Rails快，因為compile會提醒你語法錯誤，未使用的變數名稱，typo等，這些在Rails上都必需等到實際執行才發注意到的問題。<br>不過也必需承認以Ruby的生態圈來說，應該還是會興盛好一陣子，所以以學習資源或是工作機會來說，Rails是毫無疑問的大勝</p>
+<p>不過我仍然相信在學習Phoenix的過程中會得到一些在Rails上看不到的樂趣，讓我們繼續走下去:-)</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2016/08/17/getting-started-with-phoenix-3-create-a-new-phoenix-project/" class="prev">PREV</a><a href="/2016/08/16/getting-started-with-phoenix-1-guide-assumptions/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2016/08/16/getting-started-with-phoenix-2-what-is-phoenix/';
+var disqus_title = 'Getting started with Phoenix - 2. What is Phoenix';
+var disqus_url = 'https://tomohung.com/2016/08/16/getting-started-with-phoenix-2-what-is-phoenix/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

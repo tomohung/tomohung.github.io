@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Getting started with Phoenix - 4. Phoenix File/Folder · TomoHung</title><meta name="description" content="Getting started with Phoenix - 4. Phoenix File/Folder - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Getting started with Phoenix - 4. Phoenix File/Folder</h1><div class="post-info">Aug 17, 2016</div><div class="post-content"><p>在上一篇文章順利的看到首頁了，現在先等等，看一下剛剛我們利用<code>mix phoenix.new</code>所建立出來的資料夾結構</p>
+<table>
+<thead>
+<tr>
+<th>File/Folder</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config/</td>
+<td>就是設定檔，包含config.exs和各個環境變數要用的設定檔，如dev.exs就是預設開發用的設定檔</td>
+</tr>
+<tr>
+<td>deps/</td>
+<td>利用mix安裝的套件都會放在這</td>
+</tr>
+<tr>
+<td>lib/</td>
+<td>routes檔案也是放在這裡。如果修改config/或是lib/下的檔案，server都必需重新啟動，貼心的是Phoenix會提示你</td>
+</tr>
+<tr>
+<td>test/</td>
+<td>好測試，不寫嗎</td>
+</tr>
+<tr>
+<td>web/</td>
+<td>類似Rails中的app/資料夾，內容都是放在這裡</td>
+</tr>
+<tr>
+<td>web/channels</td>
+<td>Phoenix的招牌WebSocket實作，不過目前我們還用不到它</td>
+</tr>
+<tr>
+<td>web/controllers</td>
+<td>所有流程的中心點，MVC中的C</td>
+</tr>
+<tr>
+<td>web/models</td>
+<td>model是單純的資料結構，可以和Ecto合併使用</td>
+</tr>
+<tr>
+<td>web/static</td>
+<td>存放assets</td>
+</tr>
+<tr>
+<td>web/templates</td>
+<td>html內容存放，這邊使用的是html.eex格式，也就是embed elixir format，可以像erb一樣把elixir變數代進去使用</td>
+</tr>
+<tr>
+<td>web/views</td>
+<td>在Phoenix的定義下，view是module，而template只是module下的function。我自己是把它理解成在view module下可以放顯示頁面邏輯的方法，類似Rails中的Helper</td>
+</tr>
+<tr>
+<td>brunch-config.js</td>
+<td>Phoenix預設使用Brunch做為前端管理套件</td>
+</tr>
+<tr>
+<td>mix.exs</td>
+<td>就像是Rails中的Gemfile</td>
+</tr>
+<tr>
+<td>mix.lock</td>
+<td>就像是Rails中的Gemfile.lock</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>npm管理套件設定檔</td>
+</tr>
+</tbody>
+</table>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/01/04/renew-my-blog-and-vim/" class="prev">PREV</a><a href="/2016/08/17/getting-started-with-phoenix-3-create-a-new-phoenix-project/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/';
+var disqus_title = 'Getting started with Phoenix - 4. Phoenix File/Folder';
+var disqus_url = 'https://tomohung.com/2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

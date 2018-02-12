@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course 2 Lesson 1 · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course 2 Lesson 1 - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course 2 Lesson 1</h1><div class="post-info">Feb 2, 2015</div><div class="post-content"><p>Finally, Rails is coming.</p>
+<p>Before join Tealeaf, I’ve tried few times to follow some rails guide books. I just can type some magic codes to build simplest web app but didn’t know why at all, because I even didn’t know what ruby is.</p>
+<p>This time, passing through course 1, I knew what the ruby is, then following <a href="http://guides.rubyonrails.org/getting_started.html" target="_blank" rel="noopener">official tour guide</a>, it’s much clear than other books I’ve seen. But I still got stuck on creating many-to-many relationship, because I made a stupid mistake here: <em>I modified migration file after running <code>rake db:migrate</code></em>.</p>
+<p>Then I dived into solution videos, and Chirs said that:</p>
+<blockquote>
+<p>Don’t use <code>rails generate</code> except <code>migration</code></p>
+</blockquote>
+<p>I do love this way, because:</p>
+<ol>
+<li><p>I never saw other’s show this way to build migration, they always use <code>rails generate model</code> to create model and migration. And the problem is, I thought this is the only way to create models and migrations!! And I just thought this is Rails magic, I don’t need to think too much. </p>
+</li>
+<li><p>When I got stuck because I didn’t know I can’t modified migration files after running <code>rake db:migrate</code>. Make sure migration setting is all done before running <code>rake db:migrate</code> is very important. And this is just for ActiveRecord layer, database is another layer. It’s much easier to understand how could be a disaster to modified/delete migration files working with database layer.</p>
+</li>
+</ol>
+<p>I make <a href="http://www.tomohung.com/blog/2015/02/02/newbie-for-rails-migration/" target="_blank" rel="noopener">a post to record my big step for Rails</a>.</p>
+<p>I also try to detect tealeaf discus panel, becuase I think it’s better to <code>show who kudos this post</code>. Sometimes I just want to give a kudos for people reply my post without saying something more, but it’s wierd for others to read this post, because they can’t see kudos I already gave the post. Anyway, here is my ERD for discuss panel.</p>
+<img src="http://i.minus.com/ibfrZjiBfElndg.jpg">
+<p>I’m super satisfied that this week I found my mistake when using migrations, and I think there must be other mistake for controller’s and view’s. Moving to next lesson!!</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/02/02/newbie-for-rails-migration/" class="prev">PREV</a><a href="/2015/01/30/tealeaf-course2-lesson1-quiz/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/02/02/reflection-to-tealeaf-course-2-lesson-1/';
+var disqus_title = 'Reflection to Tealeaf Course 2 Lesson 1';
+var disqus_url = 'https://tomohung.com/2015/02/02/reflection-to-tealeaf-course-2-lesson-1/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

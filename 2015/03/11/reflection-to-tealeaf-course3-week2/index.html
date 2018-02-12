@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course3 Week2 · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course3 Week2 - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course3 Week2</h1><div class="post-info">Mar 11, 2015</div><div class="post-content"><p>There are 3 kinds of test: <code>Unit</code>, <code>Functional</code>, <code>Integration</code>. In <a href="http://www.tomohung.com/blog/2015/03/06/reflection-to-tealeaf-course3-week1/" target="_blank" rel="noopener">week 1</a>, we test <strong>Model</strong>, this should belong to <code>Unit test</code> . And this week we test <strong>Controller</strong>, this should belong to <code>Functional test</code>. I guess it should be <code>Integration test</code> when we move into part of <strong>View</strong> test.</p>
+<p>I have to heavily rely on solution videos, there are two main reasons:</p>
+<ol>
+<li><p>I’m not familiar with <code>what to test</code>, because I’m a starter for TDD. It’s a big conversion <strong>from test laster to test driven</strong>.</p>
+</li>
+<li><p>I’m not familiar with <code>RSpec</code>. There are some tricks for test controllers when using RSpec.</p>
+</li>
+</ol>
+<p>For example, when we test `QueueItemsController#create’, there are 7 tests:</p>
+<ul>
+<li>it ‘redirects to my queue page’</li>
+<li>it ‘creates a queue item’</li>
+<li>it ‘creates the queue item associated with video’</li>
+<li>it ‘creates the queue item associated with current user’</li>
+<li>it ‘puts the video as the last one in the queue’</li>
+<li>it ‘does not add the video in the queue if already existed in the queue’</li>
+<li>it ‘redirects to sign in page if unauthenticated’</li>
+</ul>
+<p>A simple action needs to do such lots of tests!!</p>
+<p>Or here is for <strong>Model</strong> methods: <code>search_by_title</code>:</p>
+<ul>
+<li>it ‘returns empty array if no match’</li>
+<li>it ‘returns an array if one video’</li>
+<li>it ‘returns an array if partial match’</li>
+<li>it ‘returns an array of all matches ordered by DESC’</li>
+<li>it ‘returns an empty array for search an empty string’</li>
+</ul>
+<p>To test every possible situations is not an easy work.</p>
+<p>Brandon also metioned me that care about using <code>let</code> and <code>before</code>. Because of lots of tests in spec files, we may miss some pre-declare vars by using <code>let</code> or <code>before</code>. Sometimes, it may be better do not clean duplicated codes for code readability.</p>
+<p>Second, extract methods into <strong>Model</strong>. ex:</p>
+<figure class="highlight ruby"><figcaption><span>user.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">queue_include?</span><span class="params">(video)</span></span></span><br><span class="line">  queue_items.map(&amp;<span class="symbol">:video</span>).<span class="keyword">include</span>?(video)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>then, I can use this method everywhere in my app.</p>
+<p>###Conclusion</p>
+<p>Still on the way to be more familiar to do TDD. :-)</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/03/17/reflection-to-tealeaf-course3-week3/" class="prev">PREV</a><a href="/2015/03/06/reflection-to-tealeaf-course3-week1/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/03/11/reflection-to-tealeaf-course3-week2/';
+var disqus_title = 'Reflection to Tealeaf Course3 Week2';
+var disqus_url = 'https://tomohung.com/2015/03/11/reflection-to-tealeaf-course3-week2/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

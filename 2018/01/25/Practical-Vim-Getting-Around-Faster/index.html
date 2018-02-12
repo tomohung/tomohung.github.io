@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Practical Vim - Getting Around Faster · TomoHung</title><meta name="description" content="Practical Vim - Getting Around Faster - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Practical Vim - Getting Around Faster</h1><div class="post-info">Jan 25, 2018</div><div class="post-content"><p>更多操作上的快速鍵<br><a id="more"></a></p>
+<h2 id="區分實際行和營幕行"><a href="#區分實際行和營幕行" class="headerlink" title="區分實際行和營幕行"></a>區分實際行和營幕行</h2><p>如果一行字數太長發生wrap時就需要</p>
+<p>在<code>j</code> <code>k</code> <code>0</code> <code>$</code>之前加上<code>g</code>就是營幕操作，即使是wrap也能夠有效移動</p>
+<h2 id="字串WORD和單字word"><a href="#字串WORD和單字word" class="headerlink" title="字串WORD和單字word"></a>字串WORD和單字word</h2><p>字串WORD：不含空格的連續字元串<br>單字word：字母、數字、底線組成的連續字元串</p>
+<p><code>w</code> <code>b</code> <code>e</code> vs <code>W</code> <code>B</code> <code>E</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.g. we&apos;re going too slow</span><br></pre></td></tr></table></figure>
+<p>同樣要移動到going的開頭</p>
+<ul>
+<li><code>wwwwwww</code></li>
+<li><code>WW</code></li>
+</ul>
+<h2 id="單行搜尋"><a href="#單行搜尋" class="headerlink" title="單行搜尋"></a>單行搜尋</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Find the first occurrence of &#123;char&#125; and move to it.</span><br></pre></td></tr></table></figure>
+<p><code>f{char}</code> Forward to the next occurrence of {char}<br><code>F{char}</code> Backward to the previous occureence of {char}<br><code>t{char}</code> Forward to the character before the next occurrence of {char}<br><code>T{char}</code> Backward to the character after the previous occurrence of {char}<br><code>;</code>       Repeat the last character-search command<br><code>,</code>       Reverse the last character-search command</p>
+<p><code>T</code>用倒退搜尋但是停在符合字元前的位置來理解</p>
+<h2 id="活用t"><a href="#活用t" class="headerlink" title="活用t"></a>活用<code>t</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I&apos;ve been expecting you, Mister Bond.</span><br></pre></td></tr></table></figure>
+<p>刪除<code>, Mister Bond</code></p>
+<p><code>f,</code> <code>dt.</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I&apos;ve been expecting you.</span><br></pre></td></tr></table></figure></p>
+<h2 id="活用搜尋"><a href="#活用搜尋" class="headerlink" title="活用搜尋/"></a>活用搜尋<code>/</code></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This phrase takes time</span><br><span class="line">but eventually gets to the point.</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>ft</code> <code>v/ge&lt;CR&gt;</code> <code>hd</code></li>
+<li><code>ft</code> <code>d/ge&lt;CR&gt;</code></li>
+</ol>
+<p>方法2乾淨多了，但是刪掉的是只到要搜尋的字串前，和<code>v</code>模式不同比較不直覺</p>
+<blockquote>
+<p>The search command is an exclusive motion.</p>
+</blockquote>
+<h2 id="Text-Object-Selection"><a href="#Text-Object-Selection" class="headerlink" title="Text Object Selection"></a>Text Object Selection</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var tpl = [</span><br><span class="line">  &apos;&lt;a href=&quot;&#123;url&#125;&quot;&gt;&#123;title&#125;&lt;/a&gt;&apos;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>超棒的範例，看完後覺得以前編輯這種字串時自己像個笨蛋</p>
+<ol>
+<li>游標停在url的r上面</li>
+<li><code>vi}</code> url被選起，<code>i</code>表示inner</li>
+<li>之後都是v模式，所以可以省略。</li>
+<li><code>a&quot;</code> “{url}”被選起，<code>a</code>表示around</li>
+<li><code>i&gt;</code> a href=”{url}”被選起</li>
+<li><code>it</code> {title}被選起，<code>t</code>表示tag</li>
+<li><code>at</code> <code>&lt;a href=&quot;{url}&quot;&gt;{title}&lt;/a&gt;</code>被選起</li>
+<li><code>a]</code> []內容被選起，包含[]</li>
+</ol>
+<p>而且即使游標沒停在內容上，也會自動向後搜尋第一個符合條件的位置</p>
+<p>配合動作命令<br><code>d{motion}</code> <code>c{motion}</code> <code>y{motion}</code></p>
+<p>如：<br><code>ci&quot;</code><br><code>cit</code></p>
+<ul>
+<li><code>iw</code> Current word</li>
+<li><code>aw</code> Current word plus one space</li>
+<li><code>iW</code> Current WORD</li>
+<li><code>aW</code> Current WORD plus one space</li>
+<li><code>is</code> Current sentence</li>
+<li><code>as</code> Current sentnece plus one space</li>
+<li><code>ip</code> Current paragraph</li>
+<li><code>ap</code> Current paragraph plus one blank line</li>
+</ul>
+<p>編輯時用<code>ciw</code>較好保留空白<br>刪除時<code>daw</code>較好去除多餘的空白</p>
+<h2 id="Mark標記"><a href="#Mark標記" class="headerlink" title="Mark標記"></a>Mark標記</h2><p><code>m{char}</code> 用選定的字元{char}標記目前游標的位置<br><code>`{char}</code> 跳到{char}標記的位置</p>
+<p>tip: <code>mm</code> <code>`m</code>常用標記</p>
+<p><code>``</code> 上次跳轉之前的位置</p>
+<p><code>`.</code> 上次修改的位置</p>
+<p>實際上用<code>&#39;</code>也可以，比起<code>來說要好按多了</code>‘m`</p>
+<h2 id="開關括號間跳轉"><a href="#開關括號間跳轉" class="headerlink" title="%開關括號間跳轉"></a><code>%</code>開關括號間跳轉</h2><p>將{}替換成[]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cities = &#123;London Berlin New York&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用f&#123;% r] `` r[</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cities = [London Berlin New York]</span><br></pre></td></tr></table></figure>
+<p>因為改完]之後就無法再用%跳回了，所以可以用<code>``</code>或者是<code>&lt;C-o&gt;</code>跳回</p>
+<p>處理成對符號蠻麻煩的，這邊真的要考慮用plugin</p>
+<h2 id="Plugin-for-pair-parentheses-brackets-quotes"><a href="#Plugin-for-pair-parentheses-brackets-quotes" class="headerlink" title="Plugin for pair parentheses, brackets, quotes"></a>Plugin for pair parentheses, brackets, quotes</h2><h4 id="Auto-Pairs"><a href="#Auto-Pairs" class="headerlink" title="Auto Pairs"></a><a href="https://github.com/jiangmiao/auto-pairs" target="_blank" rel="noopener">Auto Pairs</a></h4><p>快速處理成對符號，包含新增、刪除<br><code>&lt;M-e&gt;</code>系列的快速鍵在iterm2上沒辦法用</p>
+<h4 id="surround-vim"><a href="#surround-vim" class="headerlink" title="surround.vim"></a><a href="https://github.com/tpope/vim-surround" target="_blank" rel="noopener">surround.vim</a></h4><p>快速新增、編輯成對符號在已有的字串上面</p>
+<p>同樣將{}替換成[]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cities = &#123;London Berlin New York&#125;</span><br></pre></td></tr></table></figure>
+<p><code>f{</code> <code>cs{[</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cities = [ London Berlin New York ]</span><br></pre></td></tr></table></figure>
+<p>注意左右多了空白</p>
+<h2 id="快速跳轉"><a href="#快速跳轉" class="headerlink" title="快速跳轉"></a>快速跳轉</h2><ul>
+<li><code>&lt;C-o&gt;</code> <code>&lt;C-i&gt;</code></li>
+<li><code>:jumps</code></li>
+<li><code>&#39;m</code>或<code>`m</code> Jump to mark</li>
+<li><code>`.</code> 指向最後一次修改的地方</li>
+<li><code>gi</code> 立刻跳到最後一次修改的地方並進入插入模式，實用！</li>
+<li>瀏覽大量文件後要跳回，先<code>mM</code>，查完後<code>`M</code>跳回</li>
+</ul>
+<h4 id="Change-list"><a href="#Change-list" class="headerlink" title="Change list"></a>Change list</h4><ul>
+<li><code>u&lt;C-r&gt;</code></li>
+<li><code>:changes</code></li>
+<li><code>g;</code> <code>g,</code></li>
+</ul>
+<h4 id="gf-lt-C"><a href="#gf-lt-C" class="headerlink" title="gf &lt;C-]"></a><code>gf</code> <code>&lt;C-]</code></h4><p>實際上因為plugin幫我們把path設定好了，所以才能夠在檔案或tag之間跳轉<br>如: <code>vim-ruby</code> <code>vim-bundler</code></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/02/12/practical-vim-registers/" class="prev">PREV</a><a href="/2018/01/23/Practical-Vim-Files/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2018/01/25/Practical-Vim-Getting-Around-Faster/';
+var disqus_title = 'Practical Vim - Getting Around Faster';
+var disqus_url = 'https://tomohung.com/2018/01/25/Practical-Vim-Getting-Around-Faster/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Tealeaf Course2 Lesson2 Quiz · TomoHung</title><meta name="description" content="Tealeaf Course2 Lesson2 Quiz - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Tealeaf Course2 Lesson2 Quiz</h1><div class="post-info">Feb 8, 2015</div><div class="post-content"><blockquote>
+<p>####1. Name all the 7 (or 8) routes exposed by the resources keyword in the routes.rb file. Also name the 4 named routes, and how the request is routed to the controller/action.</p>
+</blockquote>
+<p>  For example by table <code>posts</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Verb</th>
+<th>URI</th>
+<th>Controller#Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>posts</td>
+<td>GET</td>
+<td>/posts</td>
+<td>posts#index</td>
+</tr>
+<tr>
+<td>new_post</td>
+<td>GET</td>
+<td>/posts/new</td>
+<td>post#new</td>
+</tr>
+<tr>
+<td></td>
+<td>POST</td>
+<td>/posts</td>
+<td>post#create</td>
+</tr>
+<tr>
+<td>post</td>
+<td>GET</td>
+<td>/posts/:id</td>
+<td>post#show</td>
+</tr>
+<tr>
+<td>edit_post</td>
+<td>GET</td>
+<td>/posts/:id</td>
+<td>post#edit</td>
+</tr>
+<tr>
+<td></td>
+<td>PUT/PATCH</td>
+<td>/posts/:id</td>
+<td>post#update</td>
+</tr>
+<tr>
+<td></td>
+<td>DELETE</td>
+<td>/posts/:id</td>
+<td>post#destroy</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<blockquote>
+<p>####2. What is REST and how does it relate to the resources routes?</p>
+</blockquote>
+<p>  REST is abbreviation for <code>Representational State Transfer</code>. It use a VERB and a URI to operate some action for web application. And it’s corespond to 4 HTTP VERB: GET, POST, PUT, DELETE with 7 actions: index, show, new, create, edit, update, destroy.</p>
+<blockquote>
+<p>####3. What’s the major difference between model backed and non-model backed form helpers?</p>
+</blockquote>
+<p>  <code>Model backed form</code> from helpers like <code>form_for</code>, it can automatically association with objects in table, and it can dynamic generate coresponding element for different actions(ex. edit and new).</p>
+<p>  <code>Non-model backed form</code> from helpers like <code>form_tag</code>, it operate elements without relationship of tables in database.</p>
+<blockquote>
+<p>####4. How does form_for know how to build the <form> element?</form></p>
+</blockquote>
+<p>  form_for based on given object, like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_for @posts do |f| %&gt;</span><br><span class="line">  &lt;%= f.label :title %&gt;</span><br><span class="line">  &lt;%= f.text_field :title %&gt;</span><br><span class="line">  &lt;%= f.submit %&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  There’s a hidden attribute in form to record that what’s action for this request. Rails regconize this hidden attribute to build <form> element. It will automatically create submit button by what action is called.</form></p>
+<blockquote>
+<p>####5. What’s the general pattern we use in the actions that handle submission of model-backed forms (ie, the create and update actions)?</p>
+</blockquote>
+<p>For creating a post: <code>POST /posts</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def create</span><br><span class="line">  @post = Post.new(params.require(:post).permit!)</span><br><span class="line">  if @post.save</span><br><span class="line">    redirect_to posts_path</span><br><span class="line">  else</span><br><span class="line">    render :new</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>  For updating a post: <code>PUT /posts/:id</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def update</span><br><span class="line">  @post = Post.new(params.require(:post).permit!)</span><br><span class="line">  if @post.save</span><br><span class="line">    redirect_to post_path(@post)</span><br><span class="line">  else</span><br><span class="line">    render :edit</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>####6. How exactly do Rails validations get triggered? Where are the errors saved? How do we show the validation messages on the user interface?</p>
+</blockquote>
+<p>  Rails validations get triggered in Model(ActiveRecord::Base), and errors are saved in Model.<br>  We can use Model’s method to show error messages like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.errors.full_messages</span><br></pre></td></tr></table></figure></p>
+<p>  which instance is Model’s instance.</p>
+<blockquote>
+<p>####7. What are Rails helpers?</p>
+</blockquote>
+<p>  Rails helpers is a way to implement DRY principle in <code>View</code>, it abstract redundant <strong>logic codes</strong> in Views into helpers.<br>This make code in View more cleaner without too much logic in it.</p>
+<blockquote>
+<p>####8. What are Rails partials?</p>
+</blockquote>
+<p>  Rails partials is a way to implement DRY principle in <code>View</code>, it abstract redundant <strong>HTML codes</strong> in Views into partial forms.</p>
+<blockquote>
+<p>####9. When do we use partials vs helpers?</p>
+</blockquote>
+<p>  Partials is to eliminate repeatedly HTML codes in Views, and helpers is to eliminate repeatedly logic codes in Views.</p>
+<blockquote>
+<p>####10. When do we use non-model backed forms?</p>
+</blockquote>
+<p>  Some input or showing requirements do not need to be associated with tables in database.</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/02/10/reflection-to-tealeaf-course2-lesson2/" class="prev">PREV</a><a href="/2015/02/02/newbie-for-rails-migration/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/02/08/tealeaf-course2-lesson2-quiz/';
+var disqus_title = 'Tealeaf Course2 Lesson2 Quiz';
+var disqus_url = 'https://tomohung.com/2015/02/08/tealeaf-course2-lesson2-quiz/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Reflection to Tealeaf Course2 Lesson2 · TomoHung</title><meta name="description" content="Reflection to Tealeaf Course2 Lesson2 - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Reflection to Tealeaf Course2 Lesson2</h1><div class="post-info">Feb 10, 2015</div><div class="post-content"><p><a href="http://www.tomohung.com/blog/2015/02/02/reflection-to-tealeaf-course-2-lesson-1/" target="_blank" rel="noopener">Last week</a>, I know Models and Database side of Rails.</p>
+<p>This week Tealeaf reveals the <code>Controller</code> and <code>View</code> part of MVC, I would like to summarize this lesson into two parts: <code>Don&#39;t Repeat Yourself</code> and <code>Conventions over Configuration</code>.</p>
+<a id="more"></a>
+<p>###Don’t Repeat Yourself</p>
+<ul>
+<li><p>before_action</p>
+<p>Like Sinatra, before_action works at Controller, help us to remove repeatedly codes, like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">before_action: :set_post, only: [:show, :edit, :update]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def set_post</span><br><span class="line">  @post = Post.find(param[:id])</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>then, method <code>set_post</code> works at three actions : show, edit, update by once.</p>
+</li>
+<li><p>form partial</p>
+<p>Rails offer <code>form partial</code> to help us eliminate repeatedly <code>HTML codes</code>, by Rails convention, if there is a file called <code>/app/views/posts/_post.erb</code>, I can just write code:</p>
+</li>
+</ul>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= render @post %&gt;</span><br></pre></td></tr></table></figure>
+<p>  if @post is a class Post’s instance, then Rails will automatically match to the file <code>_post.erb</code>, then render this file.</p>
+<p>  There is another amazing way to show collection of instances. If I have a collection instance <code>@posts</code> by class Post, then I have write</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= render @posts %&gt;</span><br></pre></td></tr></table></figure>
+<p>  Rails will also automatically match the file <code>_post.erb</code> to iterate to render <code>@posts</code>. What a clean way to write such codes!</p>
+<ul>
+<li><p>Helpers for view: fix url and datetime</p>
+<p>We also can put some logic in Views into <code>/helpers</code>, like <code>application_helper.rb</code>. Put a lot of logic in Views is a dirty way when reviewing, and Rails have helpers to make us a clean way to do this. <code>Form Helper</code> is another good implement to help us. I’ll metion later.</p>
+</li>
+<li><p>validations</p>
+<p>Rails offer a simple to validate data in Model, like this</p>
+<figure class="highlight ruby"><figcaption><span>post.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates <span class="symbol">:title</span>, <span class="symbol">presence:</span> <span class="literal">true</span>, <span class="symbol">length:</span> &#123;<span class="symbol">minimum:</span> <span class="number">5</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###Conventions over Configuration</p>
+<ul>
+<li><p>CRUD<br>For most popular actions on web, there are 4 actions: Create, Retrieve, Update, Delete.<br>Rails offer a RESTful setting to make implemention these actions much simple.</p>
+<p>For example, in <code>routes.rb</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resources :posts</span><br></pre></td></tr></table></figure>
+<p>help us to build 7 actions corespond with VERBs and URIs.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">get &apos;/posts/&apos;, to: &quot;posts#index&quot;, as: &quot;posts&quot;</span><br><span class="line">get &apos;/posts/:id&apos;, to: &quot;posts#show&quot;, as: &quot;post&quot;</span><br><span class="line">get &apos;/posts/new&apos;, to: &quot;posts#new&quot;, as: &quot;new_post&quot;</span><br><span class="line">post &apos;/posts/&apos;, to: &quot;posts#create&quot;,</span><br><span class="line">get &apos;/posts/:id&apos;, to: &quot;posts#edit&quot;, as: &quot;edit_post&quot;</span><br><span class="line">patch &apos;/posts/:id&apos;, to: &quot;posts#update&quot;</span><br><span class="line">delete &apos;/posts/:id&apos;, to: &quot;posts#destroy&quot;</span><br></pre></td></tr></table></figure>
+<p>I also can use key word <code>except:</code> or <code>only:</code> to assign which routes will be created:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resources :posts, except: [:destory]</span><br><span class="line">resources :comments, only: [:create]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nested routes<br>Rails also offer a way to create nested path like <code>/posts/:id/comments</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resources :posts, except: [:destory] do</span><br><span class="line">  resources :comments, only: [:create]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  And this will create route for <code>comments#create</code> by nested route</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post &apos;/posts/:post_id/comments&apos;, to: &quot;comments#create&quot;, as: &quot;post_comments&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>model backed form</p>
+<p>Using <code>Model backed form</code> can associated with instance, then Rails do a lot of task behind the form.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_for [@post, @comment] do |f| %&gt;  </span><br><span class="line">  &lt;%= render &apos;shared/error_messages&apos;, instance: @comment %&gt;</span><br><span class="line">  &lt;%= f.label :body, &apos;Leave a Comment:&apos;%&gt;</span><br><span class="line">  &lt;%= f.text_area :body , rows: 5, class: &apos;span4&apos;%&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;%= f.submit class: &apos;btn btn-defualt&apos;%&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  <code>[@post, @comment]</code> is a Rails convention for creating matching routes for <code>posts/coments</code>. And this form help us to create HTML element depends on what current action is. There are different actions in <strong>edit</strong> and <strong>new</strong> actions. <code>label</code> will update information if it’s at edit action, and form action will generate a hidden attribute to store info that current actions VERB. This are all Rails conventions.</p>
+<ul>
+<li><p>category_ids for checkboxes</p>
+<p>Rails offer a helper to create checkboxes, like this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_for @post do |f| %&gt;</span><br><span class="line">  &lt;%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %&gt;</span><br><span class="line">    &lt;%= cb.label(class: &apos;checkbox inline&apos;) &#123;cb.check_box(class: &apos;checkbox&apos;) + cb.text&#125;%&gt;</span><br><span class="line">  &lt;% end %&gt;</span><br><span class="line">&lt;% end %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  And there is a virtual attribute for <code>category_ids</code>, it’s generated because we set posts and categories’s associations in Post Models:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Post &lt; ActiveRecord::Base</span><br><span class="line">  belongs_to :creator, foreign_key: :user_id, class_name: &quot;User&quot;</span><br><span class="line">  has_many :comments</span><br><span class="line">  has_many :post_categories</span><br><span class="line">  has_many :categories, through: :post_categories</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>  and <code>category_ids</code> store multiple values to match <code>collection_check_boxes</code>. Rails another magic show.</p>
+<ul>
+<li><p>auto association by mass-assignment</p>
+<p>We can write</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@comment = @post.comments.new(param.require(:comment).permit!)</span><br></pre></td></tr></table></figure>
+<p>Rails will auto assign post_id to @comment.</p>
+</li>
+</ul>
+<p>###Others</p>
+<ul>
+<li><p>Strong parameters</p>
+<p>After Rails 4, Rails lock params by default, we need to get params by this way</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">params.require(:post).permit(:title, :url, :description, category_ids:[])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  If we have to get a collection values, remember to add <code>[]</code></p>
+<ul>
+<li><p>render vs redirect_to</p>
+<p><code>render</code> is for render HTML, and <code>redirect_to</code> is for make a new request. Although we see the page is changed, but it’s totally different behind these two ways.</p>
+</li>
+</ul>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>  I can’t imagine how can I figure out such mass Rails knowledge by myself in two weeks. Here is my learning processes: <code>watch video -&gt; &#39;I knew it!&#39; -&gt; do assignment -&gt; &#39;What? How to do that?&#39; -&gt; watch solution -&gt; &#39;Ah! I got it!&#39; -&gt; complete assignment</code>. And these things happen again and again.</p>
+<p>  Watching option videos and reviewing disscusions also help me to dig out what I missed. </p>
+<p>  I should do the official guide again, and I think this time will be a totally different feeling compared with two weeks ago.</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2015/02/15/tealeaf-course2-lesson3-quiz/" class="prev">PREV</a><a href="/2015/02/08/tealeaf-course2-lesson2-quiz/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2015/02/10/reflection-to-tealeaf-course2-lesson2/';
+var disqus_title = 'Reflection to Tealeaf Course2 Lesson2';
+var disqus_url = 'https://tomohung.com/2015/02/10/reflection-to-tealeaf-course2-lesson2/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

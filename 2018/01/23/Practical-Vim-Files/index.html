@@ -1,0 +1,44 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Practical Vim - Files · TomoHung</title><meta name="description" content="Practical Vim - Files - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Practical Vim - Files</h1><div class="post-info">Jan 23, 2018</div><div class="post-content"><p>如何管理檔案和緩沖區</p>
+<a id="more"></a>
+<h2 id="管理緩沖區"><a href="#管理緩沖區" class="headerlink" title="管理緩沖區"></a>管理緩沖區</h2><ul>
+<li><code>:ls</code> buffer list</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 %a + &quot;./source/posts/2018-01-05-Practical-Vim.md&quot; line 427</span><br><span class="line">3 #    &quot;~/.vimrc&quot;                     line 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>%</code>是當前的可見緩沖區</li>
+<li><code>#</code>表示是上一次打開的緩沖區</li>
+<li><code>:bn</code> <code>:bp</code> 上下切換</li>
+<li><code>&lt;C-^&gt;</code> 快速切換目前和前次緩沖，實用!!不過這個快速鍵不順手</li>
+<li><code>:bdelete</code> ex: <code>:bd 1 2 4</code> or <code>:N,M bdelete</code></li>
+</ul>
+<h2 id="用參數列表管理緩沖區"><a href="#用參數列表管理緩沖區" class="headerlink" title="用參數列表管理緩沖區"></a>用參數列表管理緩沖區</h2><p><code>:args **/*.md</code> 把當前目錄下所有副檔名為md的都讀入緩沖區，包含所有子資料夾</p>
+<h2 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h2><ul>
+<li><code>&lt;C-w&gt;v</code> <code>:vs</code> <code>:vsp</code></li>
+<li><code>&lt;C-w&gt;s</code> <code>:sp</code></li>
+</ul>
+<p>以前用<code>:vsp</code> <code>:sp</code>不過現在覺得<code>&lt;C-w&gt;v</code> <code>&lt;C-w&gt;s</code>更順手</p>
+<ul>
+<li><code>&lt;C-w&gt;o</code> only，只保留當前視窗</li>
+<li><code>&lt;C-w&gt;c</code> close，關閉當前視窗</li>
+</ul>
+<h2 id="Tab管理"><a href="#Tab管理" class="headerlink" title="Tab管理"></a>Tab管理</h2><p>對Tab一直沒有愛，所以就跳過了</p>
+<h2 id="edit打開文件"><a href="#edit打開文件" class="headerlink" title=":edit打開文件"></a><code>:edit</code>打開文件</h2><p><code>:e %&lt;Tab&gt;</code> 展開<code>%</code>變當前工作路徑<br><code>:e %:h&lt;Tab&gt;</code> 展開<code>%:h</code>變當前工作資料夾路徑</p>
+<p>tip，在vimrc加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnoremap &lt;expr&gt; $$ getcmdtype() == &apos;:&apos; ? expand(&apos;%:h&apos;).&apos;/&apos;:&apos;%%&apos;</span><br></pre></td></tr></table></figure></p>
+<p>每次輸入<code>%%</code>直接展開工作目錄路徑</p>
+<h2 id="使用-find找文件"><a href="#使用-find找文件" class="headerlink" title="使用:find找文件"></a>使用<code>:find</code>找文件</h2><p><code>:find</code>可以找文件而不需輸入完整路徑，設置path使其威力更強大</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set path+=**</span><br></pre></td></tr></table></figure>
+<p>加上<code>*</code>可以有類似fuzzy serach的效果，如<br><code>:find *practical*</code></p>
+<h2 id="使用netrw管理文件"><a href="#使用netrw管理文件" class="headerlink" title="使用netrw管理文件"></a>使用netrw管理文件</h2><p>以前只看別人推薦就直接裝nerdtree來用，卻完全沒有用過內建的netrw，這次強迫自己習慣用這個，其實大部份的操作應該都能滿足<br>另一個好處是不會換台電腦就什麼都不能用，盡量減少對plugin的依賴</p>
+<p>從shell打開<br><code>vim .</code></p>
+<p>從編輯器內打開，打開後是在工作目錄<br><code>:e .</code> 或 <code>:e.</code></p>
+<p>不過<code>E</code>比較靈活些<br><code>:E</code> 打開後是目前檔案的目錄<br><code>:E.</code> 打開後是工作目錄</p>
+<p>打開後同樣可以用<code>&lt;C-o&gt;</code> <code>&lt;C-i&gt;</code>返回或進去</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/01/25/Practical-Vim-Getting-Around-Faster/" class="prev">PREV</a><a href="/2018/01/23/Practical-Vim-Modes-1/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2018/01/23/Practical-Vim-Files/';
+var disqus_title = 'Practical Vim - Files';
+var disqus_url = 'https://tomohung.com/2018/01/23/Practical-Vim-Files/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>
