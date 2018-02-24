@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tomohung.com/2016/06/24/phoenix-with-bootstrap/</loc>
+    
+    <lastmod>2018-02-24T15:23:04.592Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/</loc>
+    
+    <lastmod>2018-02-24T15:22:14.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-3-create-a-new-phoenix-project/</loc>
+    
+    <lastmod>2018-02-24T15:22:14.943Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2016/08/16/getting-started-with-phoenix-2-what-is-phoenix/</loc>
+    
+    <lastmod>2018-02-24T15:22:14.921Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2016/08/16/getting-started-with-phoenix-1-guide-assumptions/</loc>
+    
+    <lastmod>2018-02-24T15:22:14.900Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tomohung.com/2015/07/26/interview-review-after-tealeaf/</loc>
     
     <lastmod>2018-02-24T15:17:06.882Z</lastmod>
@@ -184,41 +219,6 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-3-create-a-new-phoenix-project/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.042Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2016/08/16/getting-started-with-phoenix-2-what-is-phoenix/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.042Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.042Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2016/06/24/phoenix-with-bootstrap/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.041Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2016/08/16/getting-started-with-phoenix-1-guide-assumptions/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.041Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2015/12/18/good-ways-of-learning-elixir-programming-language/</loc>
     
     <lastmod>2018-02-09T14:43:53.040Z</lastmod>
@@ -226,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/05/26/many-to-many-association-by-one-join-tabel-wiwith-3-foreign-keys/</loc>
+    <loc>https://tomohung.com/2015/06/28/sheng-chan-xiao-lu/</loc>
     
     <lastmod>2018-02-09T14:43:53.039Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/06/28/sheng-chan-xiao-lu/</loc>
+    <loc>https://tomohung.com/2015/05/26/many-to-many-association-by-one-join-tabel-wiwith-3-foreign-keys/</loc>
     
     <lastmod>2018-02-09T14:43:53.039Z</lastmod>
     
@@ -268,13 +268,6 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/12/yi-makers-schedule-managers-schedule/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2015/01/14/show-http-is-stateless-by-sinatra/</loc>
     
     <lastmod>2018-02-09T14:43:53.032Z</lastmod>
@@ -282,14 +275,21 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/12/language-management/</loc>
+    <loc>https://tomohung.com/2015/01/12/yi-makers-schedule-managers-schedule/</loc>
+    
+    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2014/12/15/yu-yan-guan-li-xu/</loc>
     
     <lastmod>2018-02-09T14:43:53.031Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/15/yu-yan-guan-li-xu/</loc>
+    <loc>https://tomohung.com/2014/12/12/language-management/</loc>
     
     <lastmod>2018-02-09T14:43:53.031Z</lastmod>
     
@@ -303,14 +303,14 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/09/why-do-software-engineers-make-so-much/</loc>
+    <loc>https://tomohung.com/2014/12/06/whats-it-like-to-have-a-150-iq-is-life-really-easy/</loc>
     
     <lastmod>2018-02-09T14:43:53.030Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/06/whats-it-like-to-have-a-150-iq-is-life-really-easy/</loc>
+    <loc>https://tomohung.com/2014/12/09/why-do-software-engineers-make-so-much/</loc>
     
     <lastmod>2018-02-09T14:43:53.030Z</lastmod>
     
