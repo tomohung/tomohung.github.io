@@ -2,16 +2,184 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://tomohung.com/2018/01/04/renew-my-blog-and-vim/</loc>
+    <loc>https://tomohung.com/2015/07/26/interview-review-after-tealeaf/</loc>
     
-    <lastmod>2018-02-09T14:43:53.043Z</lastmod>
+    <lastmod>2018-02-24T15:17:06.882Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/</loc>
+    <loc>https://tomohung.com/2015/05/07/reflection-to-tealeaf-course3-week8-2/</loc>
     
-    <lastmod>2018-02-09T14:43:53.042Z</lastmod>
+    <lastmod>2018-02-24T15:17:04.091Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/07/reflection-to-tealeaf-course3-week8-1/</loc>
+    
+    <lastmod>2018-02-24T15:17:02.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-3-slash-3/</loc>
+    
+    <lastmod>2018-02-24T15:17:01.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-2/</loc>
+    
+    <lastmod>2018-02-24T15:17:00.196Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-1/</loc>
+    
+    <lastmod>2018-02-24T15:16:58.710Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week6/</loc>
+    
+    <lastmod>2018-02-24T15:16:57.142Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week6-2-slash-2/</loc>
+    
+    <lastmod>2018-02-24T15:16:55.790Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/04/09/reflection-to-tealeaf-course3-week5/</loc>
+    
+    <lastmod>2018-02-24T15:16:54.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/04/09/reflection-to-tealeaf-course3-week5-2-slash-2/</loc>
+    
+    <lastmod>2018-02-24T15:16:52.792Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/04/07/reflection-to-tealeaf-course3-week4/</loc>
+    
+    <lastmod>2018-02-24T15:16:50.722Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/03/17/reflection-to-tealeaf-course3-week3/</loc>
+    
+    <lastmod>2018-02-24T15:16:48.024Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/03/11/reflection-to-tealeaf-course3-week2/</loc>
+    
+    <lastmod>2018-02-24T15:16:44.391Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/03/06/reflection-to-tealeaf-course3-week1/</loc>
+    
+    <lastmod>2018-02-24T15:16:41.931Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/22/reflection-to-tealeaf-course2-lesson4/</loc>
+    
+    <lastmod>2018-02-24T15:16:39.895Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/16/reflection-to-tealeaf-course2-lesson3/</loc>
+    
+    <lastmod>2018-02-24T15:16:37.048Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/15/tealeaf-course2-lesson3-quiz/</loc>
+    
+    <lastmod>2018-02-24T15:16:33.659Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/10/reflection-to-tealeaf-course2-lesson2/</loc>
+    
+    <lastmod>2018-02-24T15:16:30.257Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/08/tealeaf-course2-lesson2-quiz/</loc>
+    
+    <lastmod>2018-02-24T15:16:25.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/02/02/reflection-to-tealeaf-course-2-lesson-1/</loc>
+    
+    <lastmod>2018-02-24T15:16:12.935Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/30/tealeaf-course2-lesson1-quiz/</loc>
+    
+    <lastmod>2018-02-24T15:16:09.294Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/22/reflection-to-tealeaf-lesson-4/</loc>
+    
+    <lastmod>2018-02-24T15:16:03.654Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/13/reflection-to-tealeaf-week-3/</loc>
+    
+    <lastmod>2018-02-24T15:15:50.686Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/01/reflection-to-tealeaf-lesson-1/</loc>
+    
+    <lastmod>2018-02-24T15:15:35.190Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/07/reflection-to-tealeaf-lesson-2/</loc>
+    
+    <lastmod>2018-02-24T15:13:51.827Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2018/01/04/renew-my-blog-and-vim/</loc>
+    
+    <lastmod>2018-02-09T14:43:53.043Z</lastmod>
     
   </url>
   
@@ -24,6 +192,13 @@
   
   <url>
     <loc>https://tomohung.com/2016/08/16/getting-started-with-phoenix-2-what-is-phoenix/</loc>
+    
+    <lastmod>2018-02-09T14:43:53.042Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2016/08/17/getting-started-with-phoenix-4-phoenix-file-slash-folder/</loc>
     
     <lastmod>2018-02-09T14:43:53.042Z</lastmod>
     
@@ -51,13 +226,6 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/07/26/interview-review-after-tealeaf/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.040Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2015/05/26/many-to-many-association-by-one-join-tabel-wiwith-3-foreign-keys/</loc>
     
     <lastmod>2018-02-09T14:43:53.039Z</lastmod>
@@ -79,149 +247,9 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/05/07/reflection-to-tealeaf-course3-week8-2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.038Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/07/reflection-to-tealeaf-course3-week8-1/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.037Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.037Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-3-slash-3/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.037Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week7-1/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.036Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week6-2-slash-2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.036Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/05/06/reflection-to-tealeaf-course3-week6/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.036Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/03/11/reflection-to-tealeaf-course3-week2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/04/09/reflection-to-tealeaf-course3-week5/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/04/09/reflection-to-tealeaf-course3-week5-2-slash-2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/03/17/reflection-to-tealeaf-course3-week3/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/04/07/reflection-to-tealeaf-course3-week4/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.035Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/22/reflection-to-tealeaf-course2-lesson4/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/15/tealeaf-course2-lesson3-quiz/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/16/reflection-to-tealeaf-course2-lesson3/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2015/03/03/titans-tic-tac-toe/</loc>
     
     <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/03/06/reflection-to-tealeaf-course3-week1/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/02/reflection-to-tealeaf-course-2-lesson-1/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.033Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/08/tealeaf-course2-lesson2-quiz/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.033Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/30/tealeaf-course2-lesson1-quiz/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.033Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/02/10/reflection-to-tealeaf-course2-lesson2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.033Z</lastmod>
     
   </url>
   
@@ -240,7 +268,7 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/22/reflection-to-tealeaf-lesson-4/</loc>
+    <loc>https://tomohung.com/2015/01/12/yi-makers-schedule-managers-schedule/</loc>
     
     <lastmod>2018-02-09T14:43:53.032Z</lastmod>
     
@@ -254,28 +282,7 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/12/yi-makers-schedule-managers-schedule/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/13/reflection-to-tealeaf-week-3/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2014/12/12/language-management/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.031Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/01/reflection-to-tealeaf-lesson-1/</loc>
     
     <lastmod>2018-02-09T14:43:53.031Z</lastmod>
     
@@ -296,21 +303,14 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/07/reflection-to-tealeaf-lesson-2/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.031Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2014/12/06/whats-it-like-to-have-a-150-iq-is-life-really-easy/</loc>
+    <loc>https://tomohung.com/2014/12/09/why-do-software-engineers-make-so-much/</loc>
     
     <lastmod>2018-02-09T14:43:53.030Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/09/why-do-software-engineers-make-so-much/</loc>
+    <loc>https://tomohung.com/2014/12/06/whats-it-like-to-have-a-150-iq-is-life-really-easy/</loc>
     
     <lastmod>2018-02-09T14:43:53.030Z</lastmod>
     
