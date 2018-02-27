@@ -9,7 +9,6 @@
 <figure class="highlight erb"><figcaption><span>home.erb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h4&gt;hi~ &lt;%=<span class="ruby"> @name </span>%&gt; &lt;/h4&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action="/set_name" method="post"&gt;</span><br><span class="line">  &lt;input class="btn" type="submit" name="name"&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
 <p>OK, then what will <code>@name</code> show in home.erb after click button??</p>
 <p>It shows <code>Guest</code>, not <code>tealeaf</code>. Why?</p>
-<img src="http://i.minus.com/i9oeLWDYI4DBb.png">
 <p>The key point is: when 2 redirect to 3, it’s a new request, instance variable like @name will be deleted after redirect, then create a new one.</p>
 <p>That’s why @name still shows <code>Guest</code>.</p>
 <p>How about this way:</p>

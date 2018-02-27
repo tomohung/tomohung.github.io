@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://tomohung.com/2015/03/03/titans-tic-tac-toe/</loc>
+    
+    <lastmod>2018-02-27T14:38:53.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/22/reflection-to-tealeaf-lesson-4/</loc>
+    
+    <lastmod>2018-02-27T14:38:02.661Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/14/show-http-is-stateless-by-sinatra/</loc>
+    
+    <lastmod>2018-02-27T14:37:52.917Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/13/reflection-to-tealeaf-week-3/</loc>
+    
+    <lastmod>2018-02-27T14:36:59.407Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/11/nitroukai-fa-huan-jing/</loc>
+    
+    <lastmod>2018-02-27T14:36:46.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/07/reflection-to-tealeaf-lesson-2/</loc>
+    
+    <lastmod>2018-02-27T14:36:25.030Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://tomohung.com/2015/01/01/reflection-to-tealeaf-lesson-1/</loc>
+    
+    <lastmod>2018-02-27T14:36:06.344Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://tomohung.com/2016/06/24/phoenix-with-bootstrap/</loc>
     
     <lastmod>2018-02-24T15:23:04.592Z</lastmod>
@@ -184,34 +233,6 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/22/reflection-to-tealeaf-lesson-4/</loc>
-    
-    <lastmod>2018-02-24T15:16:03.654Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/13/reflection-to-tealeaf-week-3/</loc>
-    
-    <lastmod>2018-02-24T15:15:50.686Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/01/reflection-to-tealeaf-lesson-1/</loc>
-    
-    <lastmod>2018-02-24T15:15:35.190Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/07/reflection-to-tealeaf-lesson-2/</loc>
-    
-    <lastmod>2018-02-24T15:13:51.827Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2018/01/04/renew-my-blog-and-vim/</loc>
     
     <lastmod>2018-02-09T14:43:53.043Z</lastmod>
@@ -247,30 +268,9 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/03/03/titans-tic-tac-toe/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.034Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://tomohung.com/2015/02/02/newbie-for-rails-migration/</loc>
     
     <lastmod>2018-02-09T14:43:53.033Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/16/clone-my-octopress-to-nitrous-dot-io/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://tomohung.com/2015/01/14/show-http-is-stateless-by-sinatra/</loc>
-    
-    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
     
   </url>
   
@@ -282,9 +282,9 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2014/12/15/yu-yan-guan-li-xu/</loc>
+    <loc>https://tomohung.com/2015/01/16/clone-my-octopress-to-nitrous-dot-io/</loc>
     
-    <lastmod>2018-02-09T14:43:53.031Z</lastmod>
+    <lastmod>2018-02-09T14:43:53.032Z</lastmod>
     
   </url>
   
@@ -296,7 +296,7 @@
   </url>
   
   <url>
-    <loc>https://tomohung.com/2015/01/11/nitroukai-fa-huan-jing/</loc>
+    <loc>https://tomohung.com/2014/12/15/yu-yan-guan-li-xu/</loc>
     
     <lastmod>2018-02-09T14:43:53.031Z</lastmod>
     
