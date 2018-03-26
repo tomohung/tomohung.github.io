@@ -1,0 +1,128 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Mastering Git · TomoHung</title><meta name="description" content="Mastering Git - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Mastering Git</h1><div class="post-info">Mar 26, 2018</div><div class="post-content"><h1 id="Git-Restart"><a href="#Git-Restart" class="headerlink" title="Git Restart"></a>Git Restart</h1><p>算是在upcase看完mastering git 的心得，再參雜一些其它自己的經驗。</p>
+<a id="more"></a>
+<h2 id="Git-Context-in-Prompt"><a href="#Git-Context-in-Prompt" class="headerlink" title="Git Context in Prompt"></a>Git Context in Prompt</h2><p>整天和終端機為伍，所以有一個好的狀態顯式就非常重要了。<br>zsh theme可以選擇那些有顯示git的狀態，在寫程式的過程就會有所幫助。</p>
+<p>之前我是用<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes#ys" target="_blank" rel="noopener">ys</a>，最近改用<a href="https://github.com/sindresorhus/pure" target="_blank" rel="noopener">pure</a>更簡潔</p>
+<p>選一個theme來用吧</p>
+<h2 id="Always-Be-Committing"><a href="#Always-Be-Committing" class="headerlink" title="Always Be Committing"></a>Always Be Committing</h2><p>任何小的變動都可以commit，因為這些commit在之後都能夠重新整理，重點是只要有commit的變化，就會留下記錄，不用害怕救不回來。</p>
+<h2 id="Git-Stash-for-Safety"><a href="#Git-Stash-for-Safety" class="headerlink" title="Git Stash for Safety"></a>Git Stash for Safety</h2><p><code>git stash</code><br>可以把目前的檔案變化先儲存到倉庫中，所以遇到緊急情況需要先把目前程式碼保存起來，或著是要切換到另一個分支時就會有用處。<br>預設是只會記錄有變化檔案，所以這時候參數<code>-u</code> include untracked 就有用處了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash -u</span><br></pre></td></tr></table></figure>
+<h2 id="The-Reflog"><a href="#The-Reflog" class="headerlink" title="The Reflog"></a>The Reflog</h2><p>因為任何的操作在git上都是不可變的，所以即使是force push在本機端都會留下記錄，這時侯<code>git reflog</code>就派上用場了。</p>
+<p>也可以針對特定的分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog feature/branch</span><br></pre></td></tr></table></figure>
+<p>找到想救回的分支hash，然後</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 09827382</span><br></pre></td></tr></table></figure>
+<h2 id="Git-Log"><a href="#Git-Log" class="headerlink" title="Git Log"></a>Git Log</h2><p>裝完oh-my-zsh的<a href="https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh" target="_blank" rel="noopener">git plugin</a>其實就已經有一些便利的指令可以用</p>
+<p><code>glog</code>只顯示commit log一行，顯示remote and local branch，顯示分支圖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glog: aliased to git log --oneline --decorate --graph</span><br></pre></td></tr></table></figure></p>
+<p>列一些我自已常用的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">alias ga=&apos;git add&apos;</span><br><span class="line">alias gaa=&apos;git add --all&apos;</span><br><span class="line">alias gapa=&apos;git add --patch&apos;</span><br><span class="line"></span><br><span class="line">alias gb=&apos;git branch&apos;</span><br><span class="line">alias gba=&apos;git branch -a&apos;</span><br><span class="line">alias gbd=&apos;git branch -d&apos;</span><br><span class="line"></span><br><span class="line">alias gc=&apos;git commit -v&apos;</span><br><span class="line">alias gc!=&apos;git commit -v --amend&apos;</span><br><span class="line">alias gcn!=&apos;git commit -v --no-edit --amend&apos;</span><br><span class="line"></span><br><span class="line">alias gcb=&apos;git checkout -b&apos;</span><br><span class="line"></span><br><span class="line">alias gclean=&apos;git clean -fd&apos;</span><br><span class="line"></span><br><span class="line">alias gcm=&apos;git checkout master&apos;</span><br><span class="line">alias gcd=&apos;git checkout develop&apos;</span><br><span class="line">alias gco=&apos;git checkout&apos;</span><br><span class="line"></span><br><span class="line">alias gd=&apos;git diff&apos;</span><br><span class="line">alias gdca=&apos;git diff --cached&apos;</span><br><span class="line"></span><br><span class="line">alias glol=&quot;git log --graph --pretty=&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</span><br><span class="line">alias glog=&apos;git log --oneline --decorate --graph&apos;</span><br><span class="line"></span><br><span class="line">alias gf=&apos;git fetch&apos;</span><br><span class="line">alias gl=&apos;git pull&apos;</span><br><span class="line">alias gm=&apos;git merge&apos;</span><br><span class="line">alias gp=&apos;git push&apos;</span><br><span class="line"></span><br><span class="line">alias grb=&apos;git rebase&apos;</span><br><span class="line">alias grbi=&apos;git rebase -i&apos;</span><br><span class="line"></span><br><span class="line">alias gstc=&apos;git stash clear&apos;</span><br><span class="line">alias gstd=&apos;git stash drop&apos;</span><br><span class="line">alias gstl=&apos;git stash list&apos;</span><br><span class="line">alias gstp=&apos;git stash pop&apos;</span><br><span class="line"></span><br><span class="line">alias gst=&apos;git status&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Amending-Commits"><a href="#Amending-Commits" class="headerlink" title="Amending Commits"></a>Amending Commits</h2><p>如果忘了加檔案，可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add Gemfile.lock</span><br><span class="line">$ git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
+<p>也就是上述的<code>gcn!</code></p>
+<p>如果是想修改commit message，可以用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<p>也就是<code>gc!</code></p>
+<h2 id="Undo-Changes"><a href="#Undo-Changes" class="headerlink" title="Undo Changes"></a>Undo Changes</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout .</span><br></pre></td></tr></table></figure>
+<p>把所有修改都復元</p>
+<h2 id="Undo-a-Commit"><a href="#Undo-a-Commit" class="headerlink" title="Undo a Commit"></a>Undo a Commit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --soft HEAD^</span><br></pre></td></tr></table></figure>
+<p><code>HEAD</code>為當前commit，所以<code>HEAD^</code>為HEAD前一個commit。</p>
+<h2 id="Canceling-an-Edit"><a href="#Canceling-an-Edit" class="headerlink" title="Canceling an Edit"></a>Canceling an Edit</h2><p>不輸入任何的文字就跳出可以取消這次的commit，但也可以利用<code>:cq</code>來跳出。<br>因為git會辨識exit code為<code>0</code>來確認這個commit是有效的。</p>
+<h2 id="Add-Patch"><a href="#Add-Patch" class="headerlink" title="Add Patch"></a>Add Patch</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add --patch</span><br></pre></td></tr></table></figure>
+<p>利用這個指令可以選擇哪些hunk需要commit，進入互動介面後，<code>h</code>可叫出help，重要的是<code>s</code>可以把hunk再細分。</p>
+<h2 id="Cherry-Pick-amp-Reset-Hard"><a href="#Cherry-Pick-amp-Reset-Hard" class="headerlink" title="Cherry Pick &amp; Reset Hard"></a>Cherry Pick &amp; Reset Hard</h2><p>如果發現commit在錯誤的分支上，運用cherry-pick加上reset –hard的組合技</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout sanitize-search-query</span><br><span class="line">$ git cherry-pick origin/master..master</span><br></pre></td></tr></table></figure>
+<p>把<code>origin/master..master</code>差別的commits放到<code>sanitize-search-query</code>分支上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+<p>將master分支reset成origin/master。</p>
+<h2 id="Interactive-Rebase-amp-Squash"><a href="#Interactive-Rebase-amp-Squash" class="headerlink" title="Interactive Rebase &amp; Squash"></a>Interactive Rebase &amp; Squash</h2><p>Rebase之後是個好機會重新整理commits，反正等會也是要force push。</p>
+<p>假設rebase後有三個commits</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i master</span><br></pre></td></tr></table></figure>
+<p>進入互動介面後</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick be891be WIP add forum answer to FAQ</span><br><span class="line">s c0a3941 Remove line in README</span><br><span class="line">s 009ac91 Add other file</span><br></pre></td></tr></table></figure>
+<p>把後面兩個檔案從<code>pick</code>改成<code>s</code>，就可以只留下第一個commit的記錄。</p>
+<h2 id="Git-Objects"><a href="#Git-Objects" class="headerlink" title="Git Objects"></a>Git Objects</h2><p>在git中，總共有三種objects</p>
+<ul>
+<li><p>Blobs<br>包含了檔案內容的變化</p>
+</li>
+<li><p>Trees<br>包含連結的blobs, permission, subdirectories</p>
+</li>
+<li><p>Commits<br>包含commit hash, parent commit, metadata</p>
+</li>
+</ul>
+<p>commit &lt;- parent(s)<br>|<br>|-&gt;tree &lt;- subtree, mode, name<br>    |<br>    |-&gt;blob</p>
+<h2 id="Git-Branches-Tags"><a href="#Git-Branches-Tags" class="headerlink" title="Git Branches/Tags"></a>Git Branches/Tags</h2><h4 id="Local-branches"><a href="#Local-branches" class="headerlink" title="Local branches"></a>Local branches</h4><p><code>.git/refs/heads</code></p>
+<h4 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h4><p><code>.git/refs/tags</code></p>
+<h4 id="Remote-branches"><a href="#Remote-branches" class="headerlink" title="Remote branches"></a>Remote branches</h4><p><code>.git/refs/remote</code></p>
+<p>可能包含不同來源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ tree .git/refs</span><br><span class="line">.git/refs</span><br><span class="line">├── heads/</span><br><span class="line">|   ├── deck-last-attempt</span><br><span class="line">|   ├── master</span><br><span class="line">|   ├── ... (truncated)</span><br><span class="line">|   └── welcome-trail</span><br><span class="line">├── remotes/</span><br><span class="line">│   ├── origin</span><br><span class="line">│   │   ├── HEAD</span><br><span class="line">│   │   ├── cjt-north-star-metric</span><br><span class="line">│   │   ├── master</span><br><span class="line">│   │   ├── mg-button-colors</span><br><span class="line">│   │   └── ... (truncated)</span><br><span class="line">│   ├── production</span><br><span class="line">│   │   └── master</span><br><span class="line">│   └── staging</span><br><span class="line">│       ├── dashboard-staging</span><br><span class="line">│       ├── ... (truncated)</span><br><span class="line">│       └── master</span><br><span class="line">└── tags/</span><br><span class="line">    └── v0.1</span><br></pre></td></tr></table></figure>
+<h4 id="HEAD-Object"><a href="#HEAD-Object" class="headerlink" title="HEAD Object"></a>HEAD Object</h4><p>永遠只有一個HEAD，因為這就是指到當前分支的commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.git/HEAD</span><br><span class="line">ref: refs/heads/master</span><br></pre></td></tr></table></figure>
+<h2 id="Verbose-Checkout"><a href="#Verbose-Checkout" class="headerlink" title="Verbose Checkout"></a>Verbose Checkout</h2><p>一般建分支</p>
+<p><code>git checkout -b new-branch</code></p>
+<p>但其實可以指定base branch</p>
+<p><code>git checkout -b new-branch master</code><br>用master分支來建立新的分支new-branch</p>
+<h2 id="Checking-Out-a-File"><a href="#Checking-Out-a-File" class="headerlink" title="Checking Out a File"></a>Checking Out a File</h2><p><code>$ git checkout master -- app/Gemfile</code></p>
+<p>double dashes – 是為了避免模糊定義，參考<a href="https://stackoverflow.com/questions/13321458/meaning-of-git-checkout-double-dashes" target="_blank" rel="noopener">這裡</a></p>
+<h2 id="幾種分支何併方法"><a href="#幾種分支何併方法" class="headerlink" title="幾種分支何併方法"></a>幾種分支何併方法</h2><ul>
+<li>Fast Forward Merge<br>預設可行的話merge就會以Fast Forward的方式進行，保持分支的乾淨。</li>
+<li>Non Fast Forward Merge<br>保留feature branch的commit，經驗上合併到stable分支時會用到，因為revert時可以整個feature一併作用。</li>
+<li>Rebasing<br>開發後，原先base分支也有變化，利用rebase讓目前開發的分支更新。</li>
+<li>Interactive Rebase<br>其中Squash讓多餘的commits合併一起，是個重新整理的好機會。</li>
+</ul>
+<h2 id="Hub"><a href="#Hub" class="headerlink" title="Hub"></a>Hub</h2><p><a href="https://hub.github.com/" target="_blank" rel="noopener">hub</a></p>
+<blockquote>
+<p>hub is a command-line wrapper for git that makes you better at GitHub.</p>
+</blockquote>
+<p>小技巧，在github頁面上按<code>y</code>，可以得到perminent link。<br><a href="https://help.github.com/articles/getting-permanent-links-to-files/" target="_blank" rel="noopener">https://help.github.com/articles/getting-permanent-links-to-files/</a></p>
+<h2 id="Vim-Fugitive"><a href="#Vim-Fugitive" class="headerlink" title="Vim - Fugitive"></a>Vim - Fugitive</h2><p><a href="https://github.com/tpope/vim-fugitive" target="_blank" rel="noopener">fugitive</a>讓vim也能直接操作git。</p>
+<p><code>:Gblame</code>看到爛code想知道要罵誰用這就對了</p>
+<p><code>:Gdiff</code></p>
+<p><code>:Gread</code>等同於<code>git checkout &lt;file&gt;</code></p>
+<p><code>:Gremove</code>包含幾個操作</p>
+<ul>
+<li>移除buffer</li>
+<li>從working directory刪除檔案</li>
+<li>執行<code>git rm</code></li>
+</ul>
+<p><code>:Gmove</code></p>
+<p><code>:Gmove full/path/to/new-filename</code></p>
+<p><code>:Gstatus</code></p>
+<p>常用指令</p>
+<ul>
+<li><code>D</code> open diff to review</li>
+<li><code>-</code> stage or unstage file</li>
+<li><code>&lt;C-n&gt;</code> <code>&lt;C-p&gt;</code> Jump to next/previous file</li>
+<li><code>cc</code> commit</li>
+</ul>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>協作是不可避免的，所以得有些基本技巧先熟知</p>
+<ul>
+<li>Open PR (Pull Request)</li>
+<li>提供上下脈絡<ul>
+<li>Why?</li>
+<li>Other solution?</li>
+<li>Any assumptions?</li>
+</ul>
+</li>
+<li>截圖或gif (<a href="https://www.cockos.com/licecap/" target="_blank" rel="noopener">licecap</a>)</li>
+<li>code review (<a href="https://github.com/thoughtbot/guides/tree/master/code-review" target="_blank" rel="noopener">thoughtbot guide to code review</a>)</li>
+</ul>
+<h2 id="合併分支"><a href="#合併分支" class="headerlink" title="合併分支"></a>合併分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge -</span><br></pre></td></tr></table></figure>
+<p><code>-</code>表示前一次切換的分支名</p>
+<h2 id="刪除分支"><a href="#刪除分支" class="headerlink" title="刪除分支"></a>刪除分支</h2><p>刪除local</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p> 刪除遠端</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p> 不過遠端上可以在github PR page上操作會比較簡單。</p>
+<h2 id="其它資源"><a href="#其它資源" class="headerlink" title="其它資源"></a>其它資源</h2><ul>
+<li><a href="http://gitready.com/" target="_blank" rel="noopener">git ready</a></li>
+<li><a href="https://progit.org/" target="_blank" rel="noopener">pro git</a></li>
+<li><a href="https://github.com/pluralsight/git-internals-pdf" target="_blank" rel="noopener">git internal pdf</a></li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/01/04/renew-my-blog-and-vim/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2018/03/26/mastering-git/';
+var disqus_title = 'Mastering Git';
+var disqus_url = 'https://tomohung.com/2018/03/26/mastering-git/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>
