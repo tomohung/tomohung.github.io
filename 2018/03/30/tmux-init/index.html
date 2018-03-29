@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> tmux init · TomoHung</title><meta name="description" content="tmux init - Tomo Hung"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/photo.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://tomohung.com/atom.xml" title="TomoHung"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/photo.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/tomohung" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">tmux init</h1><div class="post-info">Mar 30, 2018</div><div class="post-content"><h1 id="Productive-Mouse-Free-Development"><a href="#Productive-Mouse-Free-Development" class="headerlink" title="Productive Mouse-Free Development"></a>Productive Mouse-Free Development</h1><p>借用<a href="https://pragprog.com/book/bhtmux/tmux" target="_blank" rel="noopener">tmux</a>書的副標題，來當作本文的標題。開發的過程中，只要是需要移動手去操作，例如滑鼠，甚至是在vim中移動手指頭去操作上下左右，無形中都是浪費時間。所以這裡試著配合tmux + vim的操作，來達到盡量不使用滑鼠的目標。</p>
+<p>主要的過程一樣是參考upcase中<a href="https://thoughtbot.com/upcase/tmux" target="_blank" rel="noopener">tmux</a>的教程。也參雜了一些我自己參考網路上其它人的設定檔，但重要的是整個調整的過程，先找出浪費時間的問題點，接著才是如何設定來克服問題。</p>
+<a id="more"></a>
+<h2 id="prefix"><a href="#prefix" class="headerlink" title="prefix"></a>prefix</h2><p>預設的prefix是<c-b>，如果你真的都是照這個按應該手很快就抽筋，可以改成</c-b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unbind-key C-b</span><br><span class="line">set -g prefix C-a</span><br></pre></td></tr></table></figure>
+<p>重新設定prefix <c-a>，記得Ctrl要設定成Capslock，不然一樣手會抽筋。</c-a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind a last-window</span><br></pre></td></tr></table></figure>
+<p>快速切換window，所以會變成<code>&lt;C-a&gt;a</code>，比較順手。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># type twice can still send C-a</span><br><span class="line">bind-key -r C-a send-prefix</span><br></pre></td></tr></table></figure>
+<p>在vim中，<code>&lt;C-a&gt;</code>是有用處的，可以增加數字，因為tmux而不能用就太可惜了，所以設定連按兩次一樣會送出<code>&lt;C-a&gt;</code>，另外參數<code>-r</code>接示可以按著Ctrl鍵後再按<code>a</code>連發。</p>
+<h2 id="Reload-Config"><a href="#Reload-Config" class="headerlink" title="Reload Config"></a>Reload Config</h2><p>要測試設定檔最好的方式就是邊改邊試，所以重新載入設定檔就變成一個常執行的動作。</p>
+<p>這邊就要先介紹一下tmux的plugin，<a href="https://github.com/tmux-plugins/tmux-sensible" target="_blank" rel="noopener">tmux-sensible</a>，它的目標是有一個所有tmux的使用者都能接受的設定檔，所以含蓋了一些基本的設定，包含我們現在要講的重載設定檔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># source .tmux.conf as suggested in `man tmux`</span><br><span class="line">bind R source-file &apos;~/.tmux.conf&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="TPM-Tmux-Plugin-Manager"><a href="#TPM-Tmux-Plugin-Manager" class="headerlink" title="TPM (Tmux Plugin Manager)"></a>TPM (Tmux Plugin Manager)</h2><p>既然上節提到了tmux plugin，那就得說說<a href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener">TPM</a>，能幫助我們安裝套件，讓我們直接站在別人的肩膀上。</p>
+<h2 id="Integration-with-Vim"><a href="#Integration-with-Vim" class="headerlink" title="Integration with Vim"></a>Integration with Vim</h2><p>因為主力開發是Vim，所以當然要考慮同時使用Vim的情況下，因此<a href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener">vim-tmux-navigator</a>這個套件就是因此而生的，作者也就是upcase tmux的主講人。</p>
+<p>裝上後就可以用<code>&lt;C-h&gt;</code> <code>&lt;C-j&gt;</code> <code>&lt;C-k&gt;</code> <code>&lt;C-l&gt;</code>無縫在tmux pane和vim split window中自由的移動。</p>
+<h2 id="Pane-Control"><a href="#Pane-Control" class="headerlink" title="Pane Control"></a>Pane Control</h2><p><a href="https://github.com/tmux-plugins/tmux-pain-control" target="_blank" rel="noopener">tmux-pain-control</a>這個套件加入了幾個操作pane常用的功能，作者把名字故意取作<code>pain</code>，想必是原本在操作pane覺得很痛苦XD</p>
+<p>另一個bind-key設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-key b break-pane -d</span><br></pre></td></tr></table></figure>
+<p>可以把pane切出去另一個window</p>
+<p>或是把另一個window的pane join過來</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-key j command-prompt -p &quot;join pane from: &quot;  &quot;join-pane -h -s &apos;%%&apos;&quot;</span><br></pre></td></tr></table></figure>
+<p>交換pane</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-key s display-panes\; command-prompt -p &quot;pane #: &quot;  &quot;swap-pane -t &apos;%%&apos;&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="Resize-panes"><a href="#Resize-panes" class="headerlink" title="Resize panes"></a>Resize panes</h4><p>prefix + H/J/K/L 可以控制當前pane的上下左右大小。</p>
+<h4 id="Spliting-panes"><a href="#Spliting-panes" class="headerlink" title="Spliting panes"></a>Spliting panes</h4><ul>
+<li>prefix + | 望文生義，就不用解釋了</li>
+<li>prefix + / 和上面一樣，但是會以全畫面來切割左右</li>
+<li>prefix + - 一樣望文生義</li>
+<li>prefix + _ 和上面一樣，但是會以全畫面來切割上下</li>
+</ul>
+<h2 id="Copy-Text"><a href="#Copy-Text" class="headerlink" title="Copy Text"></a>Copy Text</h2><p>在最前面提到了，既然想要盡量不使用滑鼠，面對查找Log時就會遇到困難。原來在iTerm中還可以用滑鼠滾動，圈選和複制，但是到了tmux就沒辦法。不方便沒錯，但是記住我們一開始的目標就是放在要能有效的操作，所以滑鼠的方便性在這裡我們只能捨去。</p>
+<p><code>prefix + [</code>可以進入copy mode，tmux的copy mode能夠切換成vi mode，對vim的使用者比較親切</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Use vim keybindings in copy mode</span><br><span class="line">setw -g mode-keys vi</span><br><span class="line"># vi like copy paste behaviour</span><br><span class="line">bind-key -T copy-mode-vi &apos;v&apos; send -X begin-selection</span><br><span class="line">bind-key -T copy-mode-vi &apos;V&apos; send -X select-line</span><br><span class="line">bind-key -T copy-mode-vi &apos;r&apos; send -X rectangle-toggle</span><br><span class="line">bind-key -T copy-mode-vi &apos;y&apos; send -X copy-pipe-and-cancel &quot;pbcopy&quot;</span><br></pre></td></tr></table></figure>
+<p>另外加入bind-key <code>v</code> <code>V</code> <code>r</code> <code>y</code>讓操作更接近vim的習慣。<br>可以按<code>q</code>跳離copy mode。</p>
+<p>在copy mode中也能像vim一樣用<code>/</code>做搜尋，或者是想要更進階的話可以用<a href="https://github.com/tmux-plugins/tmux-copycat" target="_blank" rel="noopener">tmux-copycat</a>。</p>
+<p>參考網頁的說明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This plugin enables:</span><br><span class="line">- regex searches</span><br><span class="line">- search result highlighting</span><br><span class="line">- predefined searches</span><br></pre></td></tr></table></figure>
+<p>原本copy需要另外安裝其它套件，不過現在較新的版本tmux/iTerm可以不用麻煩了：</p>
+<p>If you have tmux 1.5 or newer and are using iTerm2 version 3 or newer then the y in copy-mode and mouse selection will work without tmux-yank.</p>
+<p>To enable this:</p>
+<ol>
+<li>Go into iTerm2’s preferences.</li>
+<li>Go to the “General” tab.</li>
+<li>Check “Applications in terminal may access clipboard”</li>
+</ol>
+<h2 id="Session-List-Control"><a href="#Session-List-Control" class="headerlink" title="Session List Control"></a>Session List Control</h2><p>如果需要開其它的專案，這時候就會考慮再開一個新的session，那麼session管理的需求就會出現了，可以考慮用<a href="https://github.com/tmux-plugins/tmux-sessionist" target="_blank" rel="noopener">tmux-sessionlist</a>這個套件。</p>
+<p><code>prefix + g</code> 尋找session，名字可以部份match<br><code>prefix + C</code> 新增session<br><code>prefix + X</code> 刪除session<br><code>prefix + S</code> 切換上一個session<br><code>prefix + @</code> 把這個pane切出去另一個session</p>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/03/26/mastering-git/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+var disqus_identifier = '2018/03/30/tmux-init/';
+var disqus_title = 'tmux init';
+var disqus_url = 'https://tomohung.com/2018/03/30/tmux-init/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//tomohung.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2018 <a href="https://tomohung.com">Tomo Hung</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-12830335-2",'auto');ga('send','pageview');</script></body></html>

@@ -48,7 +48,7 @@
 <li><p>Commits<br>包含commit hash, parent commit, metadata</p>
 </li>
 </ul>
-<p>commit &lt;- parent(s)<br>|<br>|-&gt;tree &lt;- subtree, mode, name<br>    |<br>    |-&gt;blob</p>
+<p>commit &lt;- parent(s)<br>|<br>|-&gt;tree &lt;- subtree, mode, name<br>|<br>|-&gt;blob</p>
 <h2 id="Git-Branches-Tags"><a href="#Git-Branches-Tags" class="headerlink" title="Git Branches/Tags"></a>Git Branches/Tags</h2><h4 id="Local-branches"><a href="#Local-branches" class="headerlink" title="Local branches"></a>Local branches</h4><p><code>.git/refs/heads</code></p>
 <h4 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h4><p><code>.git/refs/tags</code></p>
 <h4 id="Remote-branches"><a href="#Remote-branches" class="headerlink" title="Remote branches"></a>Remote branches</h4><p><code>.git/refs/remote</code></p>
@@ -95,8 +95,8 @@
 </ul>
 <h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>協作是不可避免的，所以得有些基本技巧先熟知</p>
 <ul>
-<li>Open PR (Pull Request)</li>
-<li>提供上下脈絡<ul>
+<li>Open PR (Pull Request)<ul>
+<li>提供上下脈絡</li>
 <li>Why?</li>
 <li>Other solution?</li>
 <li>Any assumptions?</li>
@@ -109,15 +109,15 @@
 <p><code>-</code>表示前一次切換的分支名</p>
 <h2 id="刪除分支"><a href="#刪除分支" class="headerlink" title="刪除分支"></a>刪除分支</h2><p>刪除local</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-<p> 刪除遠端</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-<p> 不過遠端上可以在github PR page上操作會比較簡單。</p>
+<p>刪除遠端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>不過遠端上可以在github PR page上操作會比較簡單。</p>
 <h2 id="其它資源"><a href="#其它資源" class="headerlink" title="其它資源"></a>其它資源</h2><ul>
 <li><a href="http://gitready.com/" target="_blank" rel="noopener">git ready</a></li>
 <li><a href="https://progit.org/" target="_blank" rel="noopener">pro git</a></li>
 <li><a href="https://github.com/pluralsight/git-internals-pdf" target="_blank" rel="noopener">git internal pdf</a></li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/2018/01/04/renew-my-blog-and-vim/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
+</div></article></div></main><footer><div class="paginator"><a href="/2018/03/30/tmux-init/" class="prev">PREV</a><a href="/2018/01/04/renew-my-blog-and-vim/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'tomohung';
 var disqus_identifier = '2018/03/26/mastering-git/';
 var disqus_title = 'Mastering Git';
 var disqus_url = 'https://tomohung.com/2018/03/26/mastering-git/';
