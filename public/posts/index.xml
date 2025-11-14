@@ -6,7 +6,35 @@
     <description>Recent content in Posts on Tomo&#39;s Blog</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
+    <lastBuildDate>Fri, 14 Nov 2025 11:56:03 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 靜態網站架設教學：從零開始打造你的 Blog</title>
+      <link>http://localhost:1313/posts/hugo-papermod-setup-guide/</link>
+      <pubDate>Fri, 14 Nov 2025 11:56:03 +0800</pubDate>
+      <guid>http://localhost:1313/posts/hugo-papermod-setup-guide/</guid>
+      <description>&lt;h1 id=&#34;hugo--papermod-主題快速安裝指南&#34;&gt;Hugo + PaperMod 主題快速安裝指南&lt;/h1&gt;
+&lt;p&gt;本文將介紹如何使用 Hugo 建立靜態網站，並安裝 PaperMod 主題。&lt;/p&gt;
+&lt;h2 id=&#34;前置需求安裝&#34;&gt;前置需求安裝&lt;/h2&gt;
+&lt;h3 id=&#34;安裝-hugo&#34;&gt;安裝 Hugo&lt;/h3&gt;
+&lt;p&gt;使用 Homebrew 安裝 Hugo：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安裝-go&#34;&gt;安裝 Go&lt;/h3&gt;
+&lt;p&gt;使用 asdf 版本管理工具安裝 Go：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 添加 Go 插件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 安裝最新版本的 Go&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install golang latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安裝-dart-sass&#34;&gt;安裝 Dart Sass&lt;/h3&gt;
+&lt;p&gt;Hugo 的某些主題需要 Dart Sass 來編譯樣式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install sass/sass/sass
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;建立-hugo-網站&#34;&gt;建立 Hugo 網站&lt;/h2&gt;
+&lt;h3 id=&#34;初始化專案&#34;&gt;初始化專案&lt;/h3&gt;
+&lt;p&gt;建立一個新的 Hugo 網站（使用 YAML 格式的設定檔）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site MyFreshWebsite --format yaml
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 請將 &lt;code&gt;MyFreshWebsite&lt;/code&gt; 替換成你想要的網站名稱&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

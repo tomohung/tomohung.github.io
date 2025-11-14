@@ -6,3 +6,7 @@ params:
   ShowReadingTime: true
   hideSummary: true
   ShowCodeCopyButtons: true
+
+caches:
+  images:
+    dir: :cacheDir/images
