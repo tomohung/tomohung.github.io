@@ -5,3 +5,4 @@ theme: ["PaperMod"]
 params:
   ShowReadingTime: true
   hideSummary: true
+  ShowCodeCopyButtons: true
