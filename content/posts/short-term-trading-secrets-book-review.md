@@ -1,8 +1,8 @@
 ---
 date: '2025-11-15T23:39:21+08:00'
 draft: false
-title: '《短線交易秘訣》讀書心得：掌握波動的藝術'
-tags: ["交易"]
+title: '短線交易秘訣'
+tags: ["交易", "讀書心得"]
 ---
 
 最近讀完了 Larry Williams 的《短線交易秘訣》（Long-Term Secrets to Short-Term Trading），這是一本 2000 年出版的經典著作。雖然已經過了二十多年，但書中的核心觀念至今依然適用。
