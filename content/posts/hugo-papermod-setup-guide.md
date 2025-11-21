@@ -82,5 +82,15 @@ hugo new content content/posts/my-first-post.md
 
 ---
 
-安裝完成後，你就可以開始使用 `hugo server` 啟動本地開發伺服器，預覽你的網站了！
+安裝完成後，你就可以開始使用 `hugo server -D` 啟動本地開發伺服器，預覽你的網站了！
 
+## Update
+
+### 2025-11-22
+
+如果是第一次 git clone 這個 repo 到新電腦上，需要把 PaperMod 的 submodule 也下載下來
+```
+git submodule init && git submodule update
+```
+
+Ref: https://stackoverflow.com/a/1030263

@@ -1,21 +1,22 @@
 ---
-date: 2025-11-22T05:43:00
+date: '2025-11-22T05:43:00+08:00'
 draft: true
-title: 不用連接 Kobo 裝置，直接從 Mac 匯入閱讀筆記到 Obsidian
-tags:
-  - 教學
+title: '不用連接 Kobo 裝置，直接從 Mac 匯入閱讀筆記到 Obsidian'
+tags: ["教學"]
 ---
+
+
 ## Obsidian 是什麼？
 
-Obsidian 是一個免費且彈性的筆記應用程式，專為個人思考而設計。你可以用它來寫日記、建立知識庫，或是管理專案。它提供無限的畫布讓你整理想法，並支援數千種外掛程式，讓你能客製化自己的思考空間。
+[Obsidian](https://obsidian.md) 是一個免費且彈性的筆記應用程式，專為個人思考而設計。你可以用它來寫日記、建立知識庫，或是管理專案。它提供無限的畫布讓你整理想法，並支援數千種外掛程式，讓你能客製化自己的思考空間。
 
 ## Obsidian Kobo Highlights Import 插件
 
-這是一個專門用來匯入 Kobo 電子書劃線和筆記的 Obsidian 插件。它可以將你在 Kobo 上的閱讀筆記直接整合到 Obsidian 筆記系統中，還支援自訂模板，讓你完全掌控輸出格式。
+[Obsidian Kobo Highlights Import](https://github.com/OGKevin/obsidian-kobo-highlights-import) 是一個專門用來匯入 Kobo 電子書劃線和筆記的 Obsidian 插件。它可以將你在 Kobo 上的閱讀筆記直接整合到 Obsidian 筆記系統中，還支援自訂模板，讓你完全掌控輸出格式。
 
 ## 不需要連接裝置的新方法
 
-網路上大部分的文章都是教你怎麼從 Kobo 的電子書裝置，把筆記匯到 Obsidian 裡面，甚至連官方文件自己也是這麼教的。官方的標準步驟是：
+網路上大部分的文章都是教你怎麼從 Kobo 的電子書裝置，把筆記匯到 Obsidian 裡面，甚至連插件官方文件自己也是這麼教的。官方的標準步驟是：
 
 1. 用 USB 線連接 Kobo 裝置到電腦
 2. 確認裝置已掛載（或手動掛載）
