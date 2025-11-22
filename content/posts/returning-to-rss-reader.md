@@ -30,7 +30,8 @@ PTT 是從大學就一直維持習慣看資訊的地方，這幾年把會看的�
 
 **主動接收好的品質資訊來源，絕對是比不斷被動的接收推薦內容要來得好。**
 
-事實上，社群網路上有太多所謂的新聞是我們不需要知道的。[^1]
+事實上，社群網路上有太多所謂的新聞是我們不需要知道的。[^1][^2]
 
 
 [^1]: [其實 PTT 跟 YouTube 都支援 RSS 訂閱]({{< ref "posts/ptt-and-youtube-rss-subscription-guide.md" >}})
+[^2]: [從 Feedly 到 NetNewsWire：選擇開源閱讀器的理由]({{< ref "posts/switching-to-netnewswire.md" >}})
