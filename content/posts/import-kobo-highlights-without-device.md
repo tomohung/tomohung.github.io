@@ -2,7 +2,7 @@
 date: '2025-11-22T05:43:00+08:00'
 draft: false
 title: '不用連接 Kobo 裝置，直接從 Mac 匯入閱讀筆記到 Obsidian'
-tags: ["生活"]
+tags: ["Life"]
 ---
 
 
