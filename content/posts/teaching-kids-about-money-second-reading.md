@@ -1,6 +1,6 @@
 ---
 date: '2025-11-24T16:14:04+08:00'
-draft: true
+draft: false
 title: '影響孩子一生的金錢對話'
 tags: ["Book Review"]
 ---
