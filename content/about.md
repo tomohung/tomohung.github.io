@@ -1,6 +1,5 @@
 ---
 title: "About"
-# layout: "page"
 url: "/about"
 ShowReadingTime: false
 ---
@@ -19,4 +18,4 @@ Ruby on Rails 的後端工程師
 -------
 📡 歡迎訂閱 [RSS Feed](https://tomohung.github.io/index.xml)
 
-📧 這個網站沒有留言功能，也沒有計數更沒有追蹤，但歡迎你寫信到 [tomohung@gmail.com](mailto:tomohung@gmail.com) 留言給我
+📧 這個網站沒有留言功能，也沒有計數更沒有追蹤，但歡迎你寫信到 [tomohung@gmail.com](mailto:tomohung@gmail.com) 給我
