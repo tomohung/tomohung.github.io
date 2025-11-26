@@ -103,7 +103,7 @@ tags: ["Book Review"]
 
 如果「40而不惑」是知道自己的長處，用天賦來成就自己，那「50而知天命」就是用自己的天賦來成就他人。對我來說也一樣，期望自己在五十歲之前也能到知天命的階段。現在的我，還在四十努力。
 
-我們經常高估了一年會有的改變，卻嚴重低估了「持續十年」帶來的變化。讓我們一起持續成長，追求更完美的自己。
+我們經常高估了一年會有的改變，卻嚴重低估了「持續十年」帶來的變化。期許自己能夠持續成長，追求更完美的自己。
 
 [^1]: [The Hotel California (and subscriptions)](https://seths.blog/2025/11/the-hotel-california-and-subscriptions/) by Seth
 [^2]: [遠離戰場的方式](https://wiwi.blog/blog/marconi-was-wrong/#遠離戰場的方式) by Wiwi
