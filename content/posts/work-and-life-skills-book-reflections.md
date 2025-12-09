@@ -2,7 +2,7 @@
 date: '2025-11-26T15:14:10+08:00'
 draft: false
 title: '工作與生活的技術'
-tags: ["Book Review"]
+tags: ["Book Review", "Life"]
 ---
 
 # 關於生產力與生活的反思

@@ -2,7 +2,7 @@
 date: '2025-12-01T15:13:11+08:00'
 draft: false
 title: '交易者的101堂心理訓練課 - 2. 壓力與憂慮'
-tags: ["Book Review"]
+tags: ["Book Review", "Trading"]
 ---
 第二章關於壓力與憂慮的內容，讓我對自己這半年來的交易困境有了更清晰的理解。
 

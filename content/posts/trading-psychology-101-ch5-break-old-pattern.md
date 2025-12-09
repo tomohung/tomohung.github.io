@@ -1,7 +1,7 @@
 ---
 date: '2025-12-08T16:12:11+08:00'
 title: '交易者的101堂心理訓練課 - 5. 破除舊型態'
-tags: ["Book Review"]
+tags: ["Book Review", "Trading"]
 ---
 
 # 破除舊型態：交易中的自我覺察之旅

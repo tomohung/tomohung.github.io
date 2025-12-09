@@ -2,7 +2,7 @@
 date: '2025-11-25T17:14:28+08:00'
 draft: false
 title: '交易者的101堂心理訓練課 - 1. 變動'
-tags: ["Book Review"]
+tags: ["Book Review", "Trading"]
 ---
 
 # 交易心理訓練的起點：關於「變動」的思考

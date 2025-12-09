@@ -1,7 +1,7 @@
 ---
 date: '2025-12-03T11:28:08+08:00'
 title: '交易者的101堂心理訓練課 - 4. 自我提升步驟'
-tags: ["Book Review"]
+tags: ["Book Review", "Trading"]
 ---
 
 # 交易心理訓練：從自我觀察到自我提升

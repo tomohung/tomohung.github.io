@@ -1,7 +1,7 @@
 ---
 date: '2025-12-02T14:49:31+08:00'
 title: '交易者的101堂心理訓練課 - 3. 心理幸福感'
-tags: ["Book Review"]
+tags: ["Book Review", "Trading"]
 ---
 # 心理幸福感：交易者的內在修煉
 
