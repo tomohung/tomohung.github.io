@@ -74,6 +74,14 @@ mp3 https://www.youtube.com/watch?v=VIDEO_ID_1 https://www.youtube.com/watch?v=V
 
 Easy!
 
+**2026-02-15 Update**
+
+下載 mp3 給語意辦識用可以品質不用那麼好,檔案就可以再縮小一些
+
+```bash
+alias mp3='yt-dlp -x --audio-format mp3 --postprocessor-args "ffmpeg:-ar 16000 -ac 1 -b:a 64k"'
+```
+
 ## 完整的學習工作流
 
 有了穩定的音檔下載工具後，整個流程就順暢多了：
