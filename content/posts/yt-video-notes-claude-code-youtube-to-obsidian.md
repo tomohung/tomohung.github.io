@@ -4,8 +4,6 @@ title: '用 Claude Code 一鍵將 YouTube 影片轉成 Obsidian 筆記'
 tags: ["Web"]
 ---
 
-# 用 Claude Code 一鍵將 YouTube 影片轉成 Obsidian 筆記
-
 上次在[那篇文章](/posts/claude-code-youtube-video-to-illustrated-notes/)的後記才提到，想用 Groq 的 API 取代 Mac Whisper 手動轉逐字稿的步驟，原本打算「之後再說」——但當天晚上就忍不住動手了。
 
 在做這個優化的過程中，我深刻感受到一件事：對開發者來說，CLI 搭配 AI，才是真正的王道。
